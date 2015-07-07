@@ -1,0 +1,42 @@
+Reviewer 3 of IROS 2015 submission 1823
+
+Comments to the author
+======================
+
+In this paper, development of a soft manipulator with a
+grasping actuator is described. This manipulator is made by
+rubber material and very flexible. I considered that the
+robots such as communication robots need intrinsic safety.
+To achieve the safety, flexibility of manipulator is one of
+important factors. The main works of this study is
+implementation of original control method. The grasp and
+place in any position at a planer is succeeded. 
+
+1.	It should be clear the advantages for the structure
+of manipulator and grasping actuator. I know some similar
+researches of the structure and manufacturing method. I
+didn’t know the difference between proposed manipulator and
+conventional it. 
+2.	In section 3-C, “a bend angle” is described. How is
+defined this angle? In the case of development of soft
+manipulator and others, this parameter is many defined
+respectively. I want to explain using figure. 
+3.	The movie is interesting. However, I have some
+questions. 
+A)	What is the reason of generating for pulsation in
+air chamber? 
+B)	The convergence time from start point to goal point
+is long. In this works, the original point is the control
+algorithm. But I didn’t know the advantage of this control
+method. I think the PI control by using visual sensor is
+better. 
+4.	What is the application? The paper indicates the
+task of grasping and place working as like industrial
+robots. However, it seems that the force and velocity is
+insufficient according to the movie. As application for
+communication robot, this demonstration is inaptitude. 
+
+
+Comments on the Video Attachment
+================================
+

@@ -1,0 +1,121 @@
+\section{Soft Grasping Manipulator}
+\label{sec:soft_grasping_manipulator}
+%The robotic manipulator is composed of multiple bidirectional planar arm segments and combined with a unidirectional soft gripper.
+%We first introduce the previously developed uniform channel design, which is used for the soft body arm segments.
+%Following this, 
+We describe briefly the design, fabrication and functionality of the soft grasping manipulator. Further details on the design and fabrication can be found in \cite{marchese2015recipe}.
+
+%\subsection{Uniform Channel Design of the Soft Arm}
+
+\begin{figure}[thpb]
+\centering
+   \includegraphics[width=0.50\columnwidth]{figures/robotic_gripper/design_gripper.eps}
+   \caption{The pleated channel designs. (\textbf{A}) depicts the segment in an unactuated state and (\textbf{B}) shows the segment in an actuated and therefore bent state. The expansion of the pressurized channels are schematically represented.}
+   \label{fig:design}
+\end{figure}
+
+%Several existing body segment morphologies are serpentine channels \cite{correll2010soft, marchese2014design}, uniform lateral channels \cite{marchese2014whole}, and pleated channels \cite{polygerinos2013towards, mosadegh2014pneumatic}.
+%The serpentine channel design with its multiple vertical channels was first characterized by Correll et al.\cite{correll2010soft} and Onal et al.\cite{onal2011soft} and called a fluidic elastomer actuator.
+%A cross sectional view of this design is shown in Figure~\ref{fig:design}-1.
+%The design is described in \cite{marchese2014design} and paraphrased here.
+%Bidirectional bending of this segment type is achieved by the pressurization of paired agonistic fluidic channel groups shown in \emph{yellow} that are separated by an inextensible but flexible constraint layer shown in \emph{black}. 
+%These fluid channels are embedded within elastomer layers shown in \emph{cyan}.
+%When a channel's internal fluid is pressurized, the elastomer deforms and the inextensible constraint transforms this channel deformation into segment curvature.
+%The inextensible layer is typically made of a thin plastic film or fabric.
+%A uniform channel design for soft segments is shown in Figure~\ref{fig:design}-1.
+%It is an extension of the serpentine channel design by Correll et al. \cite{correll2010soft} and Onal et al. \cite{onal2011soft}. 
+%The uniform channel design is achieved through changing both its kinematic constraints and fluidic channel geometry.
+%This new design was first described in \cite{marchese2014whole} and is reused for our soft arm.
+%The outer concentric layer remains composed of soft silicone rubber and is shown as \emph{transparent}.
+%Bidirectional bending is achieved by pressurizing one of the two cylindrically-shaped and laterally embedded agonistic channels within this outer layer. 
+%These channels are shown in \emph{yellow}.
+%Also, a stiffer inner silicone layer shown in \emph{cyan} replaces an inextensible constraint layer found in the serpentine channel design.
+%The stiffer inner layer introduces a partial constraint, so that an expansion of the lateral fluidic channels causes bending.
+%This entirely soft design is simpler to fabricate because it does not require lamination.
+%The design though is limited in defining the geometry of the fluidic channels, only cylindrical or cone shaped fluidic channels are possible. 
+%This design is modular, because tubes can be passed through a hollow center, which allows the combination of many segments to an arm.
+%Also, this design does not delaminate under high pressure as opposed to the serpentine design.
+%This design was therefore chosen for making the arm to which the gripper is attached.
+
+\subsection{Pleated Channel Design for the Gripper}
+The pleated channel design consists of evenly spaced ribs shown in \emph{cyan} with embedded hollow sections shown in \emph{yellow}.
+Cut views of the un-actuated and actuated states are shown in Figure~\ref{fig:design}.
+This design approach draws inspiration for its pleats from the soft pneumatic gloves developed by Polygerinos et al. \cite{polygerinos2013towards} and its homogeneous body design is inspired from the tail design of a soft robotic fish developed by Katzschmann et al. \cite{katzschmann2014hydraulic}.
+This design is advantageous for grasping because it exhibits high curvature, minimal radial expansion, and remains compliant during actuation \cite{marchese2015recipe}. 
+The hollow ribs within the segment's pleats are connected by a center channel and are accessible through a front inlet.
+Under fluidic pressurization of the interior channel, an individual pleat allows for a ballon-like expansion of the thin exterior skin along the axial direction.
+Similar to the uniform channel design, a stiffer silicone layer shown in \emph{blue} serves as an almost inextensible constraint layer.
+The sum of the ballon-like expanding motions leads to bending of the less extensible center constraint layer to form a grasp.
+The pleated design is capable of unidirectional bending up to extreme curvatures.
+Using a lost-wax casting approach, we are not limited in defining the geometry of the segment's fluidic channels.
+Using this approach, the \emph{cyan} portion of the pleated gripper can be cured in a single step, avoiding any weakening seams due to lamination.
+Those seams are prone to rupture and manufacturing inconsistencies.
+
+\subsection{\rkk{Lost Wax Fabrication for Fluidic Elastomer Actuators}}
+Existing soft fluidic manipulators are produced through a multi-step lamination process, which results in weakening seams that can easily delaminate. 
+This limits their range of applications and lifetime.
+This is why we propose the application of lost-wax casting to the fabrication of soft fluidic actuators like a gripper.
+The actuated cavities of the soft gripper are achieved by using a wax core, pourable silicone rubber and 3D printed molds.
+The complete fabrication process for the soft gripper consists of eight steps that are depicted in Figure~\ref{fig:fabrication}.
+The tools and equipment used are listed in Table~\ref{tab:MachineTools} and are referred to by superscripts.
+
+\begin{figure}[htb]
+\centering
+   \includegraphics[width=0.98\columnwidth]{figures/robotic_gripper/fab_pleated_process_horizontal_no_labels.eps}
+      \caption{Gripper fabrication process. (\textbf{A}) Pour and cure a rubber mold, (\textbf{B}) pour wax core with embedded supportive rod, (\textbf{C}) combine bottom mold, top mold and wax core using pins, (\textbf{D}) pour rubber into assembled mold, (\textbf{E}) pour stiffer rubber on top of the cured gripper to form a constraint layer, (\textbf{F}) remove cured gripper from mold, (\textbf{G}) using an oven melt out wax core from the gripper, and (\textbf{H}) add silicone tubing and plug using silicone sealant.}
+      \label{fig:fabrication}
+\end{figure}
+
+In step (A), harder silicone rubber$^6$ is poured into a mold, which contains a printed model of the wax core.
+In preparation for step (B), the model is removed and the rubber mold is left inside the outer mold.
+A rigid rod is used as a supportive inlay inside the wax core.
+The rod is laid into the cavity of the rubber mold, supported on both ends by the outer mold.
+This ensures that the wax core does not break when removed from the rubber mold.
+%Mold release spray is applied to the silicone rubber mold to ease the wax core removal process.
+The bees-wax$^{7}$ is heated up until it becomes fully liquefied.
+The assembly of rubber mold and outer mold is then heated up for a few minutes to the same temperature as the wax.
+Using a syringe, the liquid wax is injected into the assembly.
+Within a few minutes, the injected wax will start to solidify and significantly shrink in volume; this is counteracted by injecting more hot wax into the solidifying wax core during cool down.
+In step (B), the wax core is first allowed to completely cool down, then it is released from the mold.
+In step (C), the cooled down wax core is assembled together with the bottom mold, which defines the pleated structure of the gripper.
+The mold assembly is aligned with a top mold using pins. This top mold provides for additional volume to cover the wax core.
+In step (D), low elastic modulus rubber$^1$ is mixed, degassed in a vacuum$^2$, and poured to form the gripper and allowed to cure.
+In step (E), stiffer rubber$^3$ is poured on top of the cured gripper to form a constraint layer.
+In step (F), the cured gripper is removed from the mold.
+In step (G), most of the wax core is melted out by placing the gripper into an oven in an upright position.
+After this, remaining wax residues are cooked out in a boiling water bath.
+Finally, in step (H) a silicone tube$^5$ and a piece of silicone cord$^{8}$ get covered with silicone sealant$^4$ and are inserted into the front and back holes respectively.
+
+\begin{table}[h]
+\caption{Commercially Available Tools and Equipment}
+\centering
+\begin{tabular}{c l l}
+\hline
+\hline
+\# & Product Name & Company\\
+\hline
+1 & Ecoflex 0030&  Smooth-On\\
+2 & AL Cube & Abbess Instruments and Systems, Inc.\\
+3 & Mold Star 15 & Smooth-On\\
+4 & Silicone Sealant 732 & Dow Corning Corp\\
+5 & PN 51845K53 & McMaster\\
+6 & Mold Star 30 & Smooth-On\\
+7 & Beeswax & Jacquard\\
+8 & PN 9808K21& McMaster\\
+\hline
+\end{tabular}
+\label{tab:MachineTools}
+\end{table}
+
+\subsection{\rkk{Multi-segment Arm with Gripper}}
+
+The design for our arm consisting of soft cylindrical segments was described in \cite{marchese2014whole}.
+Each cylindrical segment can only be actuated up to a bend angle of less than $60^\circ$, therefore several segments have to be combined together to allow the arm to reach a large enough workspace to perform proper manipulation tasks on a plane. 
+Our cylindrical design with its hollow channel in the center has enough space to accomodate for pneumatic tubes to connect to all six cylindrical segments and additionally to the pleated gripper, which is attached to the tip. 
+The pleated gripper has to be appropriately sized, just big enough to allow for proper manipulation without exceeding the payload capacity of the soft arm.
+
+The independent actuation of the unidirectional gripper and each bidirectional arm segment is achieved through an array of custom fluidic drive cylinders.
+%The fluidic drive cylinders control the curvature of a bidirectional arm segment or a unidirectional gripper.
+Those cylinders are driven by a linear actuator and controlled through a motor controller, which takes its command signals from a higher-level curvature controller. 
+The modeling and design of these are described in \cite{marchese2014design}.
+

@@ -1,0 +1,57 @@
+Reviewer 1 of IROS 2015 submission 1823
+
+Comments to the author
+======================
+
+The technical content of the paper is currently under
+review at IJRR, paper number 2231. This is in violation of
+both publication venues. IROS requires original
+contributions and IJRR also requires that submitted papers
+are not under review elsewhere.
+
+To support this:
+
+Figures 5, 6, 8, and 9 in the submission under review
+correspond to figures 14, 19, 24, and 25 in the IJRR
+manuscript. The results presented in this IROS submission
+are a subset of what is contained in the journal
+submission. The IJRR submission is not mentioned or
+referenced in the paper. The paper therefore gives the
+impression of presenting original research.
+
+For further reading about publication ethics, the authors
+are referred to the following web site:
+http://publicationethics.org/
+IJRR is a participating member of this organization.
+
+The document "Responsible research publication:
+international standards for authors", which I have attached
+to this review, states: 
+
+"
+4 Originality
+
+4.1 Authors should adhere to publication requirements that
+submitted work is original and has not been published
+elsewhere in any language. Work should not be submitted
+concurrently to more than one publication unless the
+editors have agreed to co-publication. If articles are
+co-published this fact should be made clear to readers.
+
+[...]
+
+4.5 Authors should inform editors if findings have been
+published previously or if multiple reports or multiple
+analyses of a single data set are under consideration for
+publication elsewhere. Authors should provide copies of
+related publications or work submitted to other journals.
+"
+
+The authors are not adhering to the last two sentences of
+this quite.
+
+
+Comments on the Video Attachment
+================================
+
+A video is not relevant for the publication decision.
