@@ -1,24 +1,19 @@
 \section{Experimental Results}
 \label{sec:experimental_results}
+In the following section summarizes the results from experiments with the soft manipulator. We discuss the grasping of delicate objects and cylindrical objects as well as the repeatability and success rate of the autonomous system.
+ 
+\subsection{\rkk{Grasping Delicate Objects}}
+The soft manipulator can pick up eggs and other delicate objects without breaking them. 
+Figure~\ref{fig:egg_approach_sequence} shows how the manipulator approaches and grasps an egg.
+Delicate objects can be manipulated without requiring a shape or a force sensor within its structure, since the compliant gripper body conforms to the object.
+Rigid-bodied grippers usually rely on force sensing or another type of sensory feedback to avoid damage caused to the object.
 
 \begin{figure}[htb]
 \centering
    \includegraphics[width=0.8\columnwidth]{Figures/experimental_results/uncertainty}
-   \caption{\rkk{Experimental characterization of the gripper's capture region: the allowable positioning uncertainty is determined through repeated placements of the center of a cylindrical object at different points on a grid relative to the gripper. Blue dots indicate all object center positions for which a grasp could be performed successfully, red crosses show the positions where a grasp failed. The grey line outlines an area for the object to be positioned within so the gripper can grasp it. The evaluation of the capture region was performed similarly to a method described in \cite{dogar2010push}.}}
+   \caption{Experimental characterization of the gripper's capture region: the allowable positioning uncertainty is determined through repeated placements of the center of a cylindrical object at different points on a grid relative to the gripper. Blue dots indicate all object center positions for which a grasp could be performed successfully, red crosses show the positions where a grasp failed. The grey line outlines an area for the object to be positioned within so the gripper can grasp it. The evaluation of the capture region was performed similarly to a method described in \cite{dogar2010push}.}
    \label{fig:grasp_uncertainty}
 \end{figure} 
-
-\subsection{\rkk{Grasping Delicate Objects}}
-\rkk{The soft manipulator can pick up hollowed-out eggs and other delicate objects without breaking them. 
-Figure~\ref{fig:egg_approach_sequence} shows how the manipulator approaches and grasps an egg.
-Delicate objects can be manipulated without requiring a shape or a force sensor within its structure, since the compliant gripper body conforms to the object.
-Rigid-bodied grippers usually rely on force sensing or another type of sensory feedback to avoid damage caused to the object.}
-
-%\subsection{\rkk{Allowable Grasping Uncertainty}}
-%
-%\rkk{We experimentally characterized the allowable grasping region of the soft gripper to show that despite positioning inaccuracies, the gripper can still successfully perform a grasp of an object. 
-%The evaluation of this allowable grasping region is performed similarly to a method described in Dogar and Srinivasa\cite{dogar2010push} work on determining capture regions for a push-grasp of a classical robotic gripper.}
-%
 
 \subsection{\rkk{Repeated Grasp Experiments}}
 We performed 25 experimental grasp-and-place trials at various positions to demonstrate the capabilities and repeatability of our system.
@@ -26,10 +21,12 @@ The results of all the trials are shown in Figure~\ref{fig:allTestsOverlaid}.
 One representative approach, grasp, and retract move is shown in Figure~\ref{fig:oneTrialVsTime}.
 In 23 of 25 experimental trials, the manipulator successfully achieved the task of grasping an object and bringing it to a bin \rkk{location shown in red}.
 The object was placed five times on each of the five points marked on the board.
-\rkk{The markers only serve as a reference point for the user to place the object roughly at the same point at every repetition.
-The user's placing accuracy is not important to the algorithm, the tracking system newly registers every single time the position of the placed object.}
+The markers only serve as a reference point for the user to place the object roughly at the same point at every repetition.
+The user's placing accuracy is not important to the algorithm, the tracking system newly registers every single time the position of the placed object.
 The five points were chosen to approximately represent the major portion of the manipulator's reachable workspace.
-As long as the root of the gripper stops so that the object is located within the capture region, the gripper will pick it up through its sweeping closing motion. The capture region is shown in grey in Figure~\ref{fig:grasp_uncertainty}.
+As long as the root of the gripper stops so that the object is located within the capture region, the gripper will pick it up through its sweeping closing motion. The capture region is shown in grey in Figure~\ref{fig:grasp_uncertainty}. 
+The evaluation of the capture region is performed similarly to a method described in Dogar and Srinivasa\cite{dogar2010push} work on determining capture regions for a push-grasp of a classical robotic gripper.
+Despite positioning inaccuracies of the soft manipulator, the gripper can nevertheless successfully perform a grasp of an object. 
 
 When the arm reaches the red bin location, it drops the object.
 

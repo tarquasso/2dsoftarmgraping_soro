@@ -1,5 +1,7 @@
 \section{Planning and Control}
 \label{sec:processing_and_control}
+This section covers our approach to preplanning motion waypoints for the soft robot and controlling the manipulator along those points. We cover existing procedures reused within the system, and detail the system's new architecture of for performing autonomous grasp-and-place tasks, including its main component, the Grasp Object Planner.
+
 \subsection{Existing Procedures}
 The forward kinematics algorithm \texttt{forwKin()}, which we employ in this work, assumes piece-wise constant curvature according to \cite{webster2010design}. 
 This algorithm was experimentally validated for the soft planar arm in \cite{marchese2014design}.
@@ -13,12 +15,12 @@ In this work we refer to it as the \texttt{curvatureController()}.
 The optimization constraints and state machine setup in that work is significantly different and not applicable to the grasping shown here. 
 Therefore, a new planner is presented in the following section.}
 
-\subsection{Grasp-and-Place Planner}
+\subsection{Autonomous Grasp-and-Place System}
 \label{subsec:grasp-place-planner}
 The robotic manipulation system is capable of autonomously performing grasp-and-place operations. 
 A state flow diagram describing its sensing, planning and executions states is given in Fig. \ref{fig:grasp-and-place-planner}. 
 A motion tracker constantly captures the position of the object and passes it along to a routine, which checks for the object to settle. 
-After it has settled, the grasp object planner receives the coordinates and radius of the settled object and together with the current curvature values of the arm and gripper, it solves a series of constrained nonlinear optimization problems to generate end-effector poses approaching the object.
+After it has settled, the Grasp Object Planner receives the coordinates and radius of the settled object and together with the current curvature values of the arm and gripper, it solves a series of constrained nonlinear optimization problems to generate end-effector poses approaching the object.
 \rkk{Those end-effector poses are essentially waypoints for an optimized path the robot arm should take to get to the final position without the risk of pushing away the object before the gripper arrives there. 
 Forcing the arm controller to follow those intermediate waypoints ensures that the arm moves to the object while its nullspace maintains a convex shape, bending away from the object. 
 Furthermore, it allows the arm to move in smaller portions, decreasing the risk of large overshoots due to slip-stick friction between the roller supports and the ground.} 
@@ -31,7 +33,7 @@ This planner is described in more detail in Section~\ref{subsec:grasp_planner}.
    \label{fig:grasp-and-place-planner}
 \end{figure}
 
-The grasp object planner passes the approach configurations $\boldsymbol{\kappa}_i^*$ of the arm to the \texttt{curvatureController()} for execution in real-time.
+The Grasp Object Planner passes the approach configurations $\boldsymbol{\kappa}_i^*$ of the arm to the \texttt{curvatureController()} for execution in real-time.
 The controller receives measured curvatures $\boldsymbol{\kappa}_{meas}$ and lengths $\boldsymbol{L}_{meas}$ at an update rate of $100\unit{Hz}$ from the recursively called \texttt{singSegInvKin()} and uses these to successively control the arm to every intermediate configuration $\boldsymbol{\kappa}_i^*$.
 During the arm initialization, the new curvature controller performs a pre-pressurization of both lateral channels. 
 This is only done for the two segments closest to the root of the arm in order to stiffen them and shorten their response time constant.  
@@ -41,9 +43,9 @@ When the arm has arrived at the object, the curvature controller initiates \text
 After encapsulating the object, \texttt{moveToBin()} requests \texttt{trajGen()} for another trajectory from the current pose to a pre-defined bin location.
 After the manipulator has arrived at the bin location, the procedure \texttt{releaseObject()} causes the gripper to open and release the object.
 
-\subsection{Grasp Planner}
+\subsection{Grasp Object Planner}
 \label{subsec:grasp_planner}
-A fundamental component of the grasp-and-place planner is the system's ability to plan a feasible approach motion to the object.
+A fundamental component of the grasp-and-place system is its ability to plan a feasible approach motion to the object.
 That is, given the location $\left(x_o, \, y_o\right)$ and radius $r_o$ of a round object as well as the manipulator's current configuration $\boldsymbol{\kappa}_{\textrm{meas}}$, we determine a series of locally optimal manipulator configurations $\boldsymbol{\kappa}_i^* \; \forall i \, = 1.. numMoves$ that will, if sequentially achieved, bring the manipulator gradually closer to the object while \rkk{any part of the arm is} not touching the object.
 We refer to these as approach configurations.
 The process for determining these approach configurations is detailed in the \texttt{planGrasp()} procedure within the Grasp Object Planner, see Algorithm \ref{alg:planGrasp}.
@@ -54,7 +56,7 @@ Given actuator limits, we then search for a series of feasible manipulator confi
 \begin{figure}[htpb]
 \centering
    \includegraphics[width=0.85\columnwidth, trim = 0mm 0mm 5mm 5mm, clip]{Figures/processing_control/grasp_object_planner.eps}
-   \caption{Grasp object planner visualization. Concentric approach circles are shown in \emph{green} and are centered about the object shown in \emph{cyan}. The locally optimal approach configurations are shown in \emph{blue} and the gripper is shown in \emph{red}. The initially measured manipulator configuration is shown in black.}
+   \caption{Visualzation of the Grasp Object Planner. Concentric approach circles are shown in \emph{green} and are centered about the object shown in \emph{cyan}. The locally optimal approach configurations are shown in \emph{blue} and the gripper is shown in \emph{red}. The initially measured manipulator configuration is shown in black.}
    \label{fig:planGrasp}
 \end{figure}
 
@@ -111,7 +113,7 @@ Given actuator limits, we then search for a series of feasible manipulator confi
     $x \gets x_{i}(0) + \frac{\sin{\theta}}{k_i} - \frac{\sin{\theta_{i}(0)}}{k_i}$. \;
     $y \gets y_{i}(0) - \frac{\cos{\theta}}{k_i} + \frac{\cos{\theta_{i}(0)}}{k_i}$. \;
   \KwRet{$\left[ x, \, y, \, \theta \right]^{\mathrm{T}}$ or $\left[ x, \, y \right]^{\mathrm{T}}$}}
-  \caption{Grasp object planner}
+  \caption{Grasp Object Planner}
   \label{alg:planGrasp}
 \end{small}
 
