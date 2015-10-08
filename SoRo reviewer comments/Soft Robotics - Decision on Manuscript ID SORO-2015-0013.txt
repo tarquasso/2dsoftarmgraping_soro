@@ -1,0 +1,112 @@
+From: Barry.Trimmer@tufts.edu
+Subject: Soft Robotics - Decision on Manuscript ID SORO-2015-0013
+Date: September 21, 2015 at 16:40:42 GMT+2
+To: rkk@csail.mit.edu
+
+21-Sep-2015
+
+Dear Mr. Katzschmann:
+
+Manuscript ID SORO-2015-0013 entitled "Autonomous Object Manipulation using a Soft Planar Grasping Manipulator" which you submitted to  Soft Robotics, has been reviewed.  The comments of the reviewer(s) are included at the bottom of this letter.
+
+The reviewer(s) have recommended revisions to your manuscript.  Therefore, I invite you to respond to the reviewer(s)' comments and revise your manuscript.
+
+To revise your manuscript, log into https://mc.manuscriptcentral.com/soro and enter your Author Center, where you will find your manuscript title listed under "Manuscripts with Decisions."  Under "Actions," click on "Create a Revision."  Your manuscript number has been appended to denote a revision.
+
+You will be unable to make your revisions on the originally submitted version of the manuscript.  Instead, revise your manuscript using a word processing program and save it on your computer.  Please also highlight the changes to your manuscript within the document by using the track changes mode in MS Word or by using bold or colored text.Once the revised manuscript is prepared, you can upload it and submit it through your Author Center.
+
+When submitting your revised manuscript, you will be able to respond to the comments made by the reviewer(s) in the space provided.  You can use this space to document any changes you make to the original manuscript.  In order to expedite the processing of the revised manuscript, please be as specific as possible in your response to the reviewer(s).
+
+IMPORTANT:  Your original files are available to you when you upload your revised manuscript.  Please delete any redundant files before completing the submission.
+
+Because we are trying to facilitate timely publication of manuscripts submitted to  Soft Robotics, your revised manuscript should be uploaded as soon as possible.  If it is not possible for you to submit your revision in a reasonable amount of time, we may have to consider your paper as a new submission.
+
+Once again, thank you for submitting your manuscript to Soft Robotics and I look forward to receiving your revision.
+
+Sincerely,
+Prof. Barry Trimmer
+Editor-in-Chief, Soft Robotics
+Barry.Trimmer@tufts.edu
+
+Reviewer(s)' Comments to Author:
+Reviewer: 1
+
+Comments to the Author
+This paper discusses an autonomous object manipulation algorithm using a soft planar grasping manipulator. 
+
+Several major issues with the paper hold it back. First, the contribution of the paper seems very minor. A considerable amount of the paper is already covered in the work from [12-14], which involves the design of the robot, the recipe to create the robot, and the whole-arm motion planning. The contribution of this work is the grasping algorithm itself, which is a preplanned sequence of robot curvatures. In light of the whole arm motion planner in [12], this contribution seems minor when adding in a (circular) object.  The algorithm itself is implemented as a state-machine method, and with 4 or 5 states and seems trivial. Only one experimental test is performed to demonstrate the algorithm, and no quantitative error metrics are provided.
+
+For these reasons and especially for the minor contribution that this manuscript offers, I cannot recommend publication as a journal paper in SoRo. The contribution seems better suited for a conference paper submission.
+
+Specifics:
+- With a motion-capture system, the problem becomes entirely well-defined. However, soft robotics are specifically designed to work in confined or constrained environments where constraints and obstacles are unknown, with often no line of sight. Discuss how one might actually implement this without a motion-capture system that picks up the entire configuration of the robot manipulator.
+Section 1.1 Last paragraph: “was only suitable for contactless motion” implies that your proposed method solved motion when the robot is constrained by the environment, but it is rather about gripping objects. 
+Section 1.2 Contribution 1 seems entirely described in [12] and [13]. Contribution 4 seems obvious that force sensing nor accurate positioning is required to manipulate objects (as discussed in [21]).
+Section 2. System overview, Figure 2: The image is difficult to see and in its current form, and information of the physical frame surrounding the robot seems unnecessary.
+Section 3.1-3.2 These sections are completely described in [13] and comes off as a recipe to make the manipulator, which is the contribution of [13], and therefore should not be reproduced in the main text. Figure 4 and Table 1. Pulled from [13] seem unnecessary. Furthermore Table 1 does not fit the column.
+Section 4.2 par 1., Which motion tracker was used?
+Section 4.2 The optimization equation, as I eventually found hidden in Algorithm 1, is difficult to understand: what are parameters v.s. variables, and what is R in the objective function? I suggest writing the equation in the text in full. I also find it difficult to see exactly the difference between the algorithm presented here and the one in [12]. While grasping is indeed is one objective, that seems to be realized by a curvature objective, which seems 
+Section 4.2 Is the optimization function over or underconstrained? Will you always find a solution? What happens if you don’t find a solution?
+Section 4.2 par 1., Provide the speed of the optimization solver as well as the solver used.
+Section 4.2 par1. “…while its nullspace maintains a convex shape, bending away from the object”. Is the convexity actually a hard constraint on the solver? How much does this depend on your specific task and the orientation of the arm/gripper combo?
+Section 4.3 The text describing Algorithm 1 would be well suited to have numbered sections that could help the reader understand at which location in the Algorithm the text is referring to. 
+Section 5.2 What is the object weight? What is the object radius? 
+Figure 9: What is the time/speed of the task?
+
+Lack of references (Some covered in DeVolder2010):
+De Volder, Michaël, and Dominiek Reynaerts. "Pneumatic and hydraulic microactuators: a review." Journal of Micromechanics and microengineering20.4 (2010): 043001.
+Ikuta, Koji, Hironobu Ichikawa, and Katsuya Suzuki. "Safety-active catheter with multiple-segments driven by micro-hydraulic actuators." Medical Image Computing and Computer-Assisted Intervention—MICCAI 2002. Springer Berlin Heidelberg, 2002. 182-191.
+J. Xiao and R. Vatcha, “Real-time adaptive motion planning for a continuum manipulator,” Proc. IROS 2010, pp. 5919–5926, Oct. 2010.
+J. Li and J. Xiao, “A general formulation and approach to constrained, continuum manipulation,” Adv. Robot., no. July 2015, pp. 1–11, 2015.
+
+
+Reviewer: 2
+
+Comments to the Author
+This paper covers the fabrication and integration of a new soft robot gripper with a six degree of freedom soft multi-segment arm. The paper also describes a planner for grasping using the integrated system as well as some evaluation of grasping efficacy and the gripper workspace.
+
+In general, I think the topic is very interesting and the approach valuable. There seems to be a number of practical limitations to the platform and approach that I would like to see addressed or discussed in the paper. The following are specific feedback that I have:
+
+-For the third contribution listed on page 2 (line 33), I don't agree that you have characterized some of the uncertainty that is rather important. For example, you have shown for the gripper where it can grab for a single set of trials, but you do not describe repeating those trials which would actually give you measures of uncertainty. Also, the red box used to denote the "bin" for placing the grasped object is an important measure of uncertainty. It seems like if this arm were to actually be used for manipulation, a good measure of uncertainty on positional accuracy would be important.
+
+-For the fourth contribution listed on page 2 (about line 37), I don't believe that you have shown (either experimentally or analytically) that you can manipulate delicate objects. I believe it, but you haven't reported gripper forces or extensive trials with delicate objects. I would either perform those tests or rewrite this contribution. It also isn't clear what is meant by "proper manipulation."
+
+-I found the description of the fabrication process for the gripper to be slightly confusing. I think more annotations on figure 3 (such as point 1 or c, etc) and referring to those annotations in the description could make it clearer. Especially since this is listed as a major contribution.
+
+-Although you reference past papers from your own group, I think you could do a better job distinguishing from your own past work. Can the process for making the gripper be applied to the multi-segments as well? Which is better for what and why?
+
+-Many limitations of the hardware or approach should be addressed in the paper. I realize that they cannot all be addressed or discussed. Nor am I asking for you to solve these problems, but an effort could be made to talk about the following:
+1)How would the design of the gripper change if we wanted to grip in both directions? Is it even possible with the current design?
+2)Is using motion tracking realistic for some of the scenarios you suggest? I would guess not, but what is the future for state estimation? Existing sensors? Or are new sensors needed?
+3)It requires 6 degrees of freedom to achieve a reasonable reachable workspace, how does this scale to a full 6 DoF task? Or does it scale? Is it limited to in-plane tasks? What is the reachable work space in the plane with 6 DoF and the + or - 60 degree joint limit?
+4)Why was a convex shape necessary for approaching a grasp? What if I wanted to approach an object with a different orientation but in the same locations you already looked at?
+5)What is the role of the rollers in carrying your payload? Without the rollers, could the arm not move the object?
+6)Why did you decide to minimize manipulator deformation for your grasp object planner? Furthermore, what if I wanted my plan to follow the shortest distance for the end effector to travel (essentially following the black line in Figure 6), is this even possible given the possible kinematics of the arm?
+
+
+-Overall the paper is well-written, but there are some places with awkward or incorrect grammar. Examples include 1)pg 2 line 37 "soft robots do neither require force sensing nor accurate ..."; 2)pg 3 line 23 "Those seams are prone to rupture ..." refers to the laminated seams, but that isn't clear from phrasing; 3)pg 7 line 21 "newly registers every single time the position of the placed object." is confusing.
+
+-The paper should definitely include a video of operation of the arm. The overlaid figures are very well done, but video would be a valuable contribution to understanding the performance of the system, especially since we have no other time dependent graphs of end effector or joint position.
+
+-Table 1 needs to be formatted to stay in column
+
+-I feel like many variables could be more clearly defined. Things such as L_meas, phi, g_off (described in algorithm, but still not clear where measured from), w_off, L_N, kappa (in algorithm 1, not clear if current kappa or desired or ...), kappa_off (defined in algorithm, but not clear again what it was). Some of these terms are on the diagram in Figure 6, but their definition was still not clear to me. This was especially the case since I'm not sure what the multiple green circles on each concentric circle signified. Some terms were also used but not clearly such as "minimal tip transit distance"
+
+-Other items were clearly defined, but it wasn't clear how their value was set such as delta d.
+
+-In Section 4.2, what does it mean for an "object to settle?" 
+
+-the forwKin procedure in algorithm 1 seemed a bit odd. It is recursive and requires calculating the forward kinematics of the previous link, all the way back to the base. That is fine, but the way it is defined, this would happen every time we step forward one link. Is that correct? Why not just use a for loop to be less confusing to a reader and more efficient computationally?
+
+-Discussion of picking up eggs in section 5.1 is a bit out of place. Was actual testing done for this? Actually reporting grip forces or pressure would be much more interesting.
+
+-For the trial shown in Figure 7, what was the uncertainty on the user placement of the object? This seems like it could be rather large (compared to the resolution of the discrete placement locations) unless you used the motion capture system somehow.
+
+-How was an appropriate size determined for the red "bin" to determine success? It looks like the spread on placement was about 15 cm. That seems rather large and some commentary on it seems important.
+
+-The discussion in section 5.2 led me to have the following questions/comments:
+1)What if the object is not round?
+2)What is the importance of the rate that way points are sent from the planner? Especially failure trials where the arm went unstable seemed to indicate that both the controller and planner may be very dependent on smoothing the desired curvature way points or sending them slowly in time. More detail would be good.
+3)The instability in general seems important and would be nice if it was determined if it was from the planner or controller.
+
+-Discussion in conclusion refers to high dexterity when handling delicate objects. However, all of your tests showed approaching the object from more or less the same direction. Do you have a kinematic model or experimental data that shows your manipulator's dexterous workspace? This is similar to a previous comment above.
