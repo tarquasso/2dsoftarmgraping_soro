@@ -2,7 +2,7 @@
 \label{sec:experimental_results}
 In the following section summarizes the results from experiments with the soft manipulator. We discuss the grasping of delicate objects and cylindrical objects as well as the repeatability and success rate of the autonomous system.
  
-\subsection{\rkk{Grasping Delicate Objects}}
+\subsection{Grasping Delicate Objects}
 The soft manipulator can pick up eggs and other delicate objects without breaking them. 
 Figure~\ref{fig:egg_approach_sequence} shows how the manipulator approaches and grasps an egg.
 Delicate objects can be manipulated without requiring a shape or a force sensor within its structure, since the compliant gripper body conforms to the object.
@@ -15,11 +15,11 @@ Rigid-bodied grippers usually rely on force sensing or another type of sensory f
    \label{fig:grasp_uncertainty}
 \end{figure} 
 
-\subsection{\rkk{Repeated Grasp Experiments}}
+\subsection{Repeated Grasp Experiments}
 We performed 25 experimental grasp-and-place trials at various positions to demonstrate the capabilities and repeatability of our system.
 The results of all the trials are shown in Figure~\ref{fig:allTestsOverlaid}.
 One representative approach, grasp, and retract move is shown in Figure~\ref{fig:oneTrialVsTime}.
-In 23 of 25 experimental trials, the manipulator successfully achieved the task of grasping an object and bringing it to a bin \rkk{location shown in red}.
+In 23 of 25 experimental trials, the manipulator successfully achieved the task of grasping an object and bringing it to a bin location shown in red.
 The object was placed five times on each of the five points marked on the board.
 The markers only serve as a reference point for the user to place the object roughly at the same point at every repetition.
 The user's placing accuracy is not important to the algorithm, the tracking system newly registers every single time the position of the placed object.
@@ -38,7 +38,7 @@ When the arm reaches the red bin location, it drops the object.
 \end{centering}
 \end{figure*}
 
-\rkk{The unsuccessful trials happened due to stick-slip friction between the roller bearings and the table surface.
+The unsuccessful trials happened due to stick-slip friction between the roller bearings and the table surface.
 Our kinematic modeling does not account for this non-linear behavior, which acts as a disturbance and can lead to failure to arrive at the next waypoint.
 To be more specific, in one of the trials, the robot slowed down too much before it almost reached its next waypoint and because of friction the arm got to a full stop. 
 The proportional gain of the curvature controller was not able to compensate for that small positional delta and since the relatively low saturation level of the integrator portion of the controller was saturated, the arm did not move to the next waypoint pose. 
@@ -47,9 +47,9 @@ In the other unsuccesful trial, the stick-slip friction also caused the arm to h
 The controller then tried to swing back to fulfill the missed waypoint, missed it again and that finally caused the whole arm to oscillate back-and-forth and eventually push the object off the table.
 In one of the other trials, the grasp and return was successfully performed, but a small overshoot over the final bin location at the end of the return caused the arm to drop off the table, which could have been avoided if the table would have not been too small towards the right.
 This outlier is shown in Figure~\ref{fig:allTestsOverlaid}.
-Overall, the experiments show that the system was repeatably able to autonomously locate a randomly placed object within its workspace, plan the arm motions, and perform the task of grasping and placing the object.}
+Overall, the experiments show that the system was repeatably able to autonomously locate a randomly placed object within its workspace, plan the arm motions, and perform the task of grasping and placing the object.
 
-\subsection{\rkk{Experimental Insights and Limitations}}
+\subsection{Experimental Insights and Limitations}
 The system can drag payloads of less than 40\unit{g}, higher payloads cause the cylindrical arm segments to stall and possibly lift off the table without moving the payload.
 There is a trade-off between the reachable workspace and the maximum payload.
 As the length of the arm increases, more workspace can be reached while less payload can be manipulated. 

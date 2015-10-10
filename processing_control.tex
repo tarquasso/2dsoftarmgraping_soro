@@ -11,9 +11,9 @@ The outputs from this block are the representations of the measured manipulator 
 This work expands on the previously developed cascaded closed-loop curvature controller, whose input is target curvatures $\boldsymbol{\kappa}_{\textrm{target}}$ and whose output is the controlled adjustment of a fluidic drive cylinder array to resolve the error between $\boldsymbol{\kappa}_{\textrm{target}}$ and $\boldsymbol{\kappa}_{\textrm{meas}}$.
 In this work we refer to it as the \texttt{curvatureController()}.
 
-\rkk{The planning algorithm presented in \cite{marchese2014whole} was developed to plan the motion of a soft arm  without gripper through a confined environment. 
+The planning algorithm presented in \cite{marchese2014whole} was developed to plan the motion of a soft arm  without gripper through a confined environment. 
 The optimization constraints and state machine setup in that work is significantly different and not applicable to the grasping shown here. 
-Therefore, a new planner is presented in the following section.}
+Therefore, a new planner is presented in the following section.
 
 \subsection{Autonomous Grasp-and-Place System}
 \label{subsec:grasp-place-planner}
@@ -21,9 +21,9 @@ The robotic manipulation system is capable of autonomously performing grasp-and-
 A state flow diagram describing its sensing, planning and executions states is given in Fig. \ref{fig:grasp-and-place-planner}. 
 A motion tracker constantly captures the position of the object and passes it along to a routine, which checks for the object to settle. 
 After it has settled, the Grasp Object Planner receives the coordinates and radius of the settled object and together with the current curvature values of the arm and gripper, it solves a series of constrained nonlinear optimization problems to generate end-effector poses approaching the object.
-\rkk{Those end-effector poses are essentially waypoints for an optimized path the robot arm should take to get to the final position without the risk of pushing away the object before the gripper arrives there. 
-Forcing the arm controller to follow those intermediate waypoints ensures that the arm moves to the object while its nullspace maintains a convex shape, bending away from the object. 
-Furthermore, it allows the arm to move in smaller portions, decreasing the risk of large overshoots due to slip-stick friction between the roller supports and the ground.} 
+Those end-effector poses are essentially waypoints for an optimized path the robot arm should take to get to the final position without the risk of pushing away the object before the gripper arrives there. 
+Forcing the arm controller to follow those intermediate waypoints ensures that the arm moves to the object while its null space maintains a convex shape, bending away from the object. 
+Furthermore, it allows the arm to move in smaller portions, decreasing the risk of large overshoots due to slip-stick friction between the roller supports and the ground.
 This planner is described in more detail in Section~\ref{subsec:grasp_planner}.
 
 \begin{figure}[!htb]
@@ -46,7 +46,7 @@ After the manipulator has arrived at the bin location, the procedure \texttt{rel
 \subsection{Grasp Object Planner}
 \label{subsec:grasp_planner}
 A fundamental component of the grasp-and-place system is its ability to plan a feasible approach motion to the object.
-That is, given the location $\left(x_o, \, y_o\right)$ and radius $r_o$ of a round object as well as the manipulator's current configuration $\boldsymbol{\kappa}_{\textrm{meas}}$, we determine a series of locally optimal manipulator configurations $\boldsymbol{\kappa}_i^* \; \forall i \, = 1.. numMoves$ that will, if sequentially achieved, bring the manipulator gradually closer to the object while \rkk{any part of the arm is} not touching the object.
+That is, given the location $\left(x_o, \, y_o\right)$ and radius $r_o$ of a round object as well as the manipulator's current configuration $\boldsymbol{\kappa}_{\textrm{meas}}$, we determine a series of locally optimal manipulator configurations $\boldsymbol{\kappa}_i^* \; \forall i \, = 1.. numMoves$ that will, if sequentially achieved, bring the manipulator gradually closer to the object while any part of the arm is not touching the object.
 We refer to these as approach configurations.
 The process for determining these approach configurations is detailed in the \texttt{planGrasp()} procedure within the Grasp Object Planner, see Algorithm \ref{alg:planGrasp}.
 The planner is visualized in Figure \ref{fig:planGrasp}.
