@@ -65,14 +65,23 @@ The workspace of the manipulator is limited to the top and left by the maximal e
 Objects were only grasped within the left quadrant of the arm, because of the gripper orientation and an upright initial starting pose.
 \rkk{A smoothing of the complete trajectory with several intermediate waypoints was found to be necessary. The amount of intermediate waypoints is determined by the variable $\Delta d$, which we found empirically to be 5\unit{cm}, around half the length of the gripper. A new waypoint is sent to the controller immediately after arriving within a small delta of the previous waypoint, the controllers for each arm segment then compensate for the new delta in curvature as quickly as possible to get to the new pose $\kappa_i^*$.}
 \rkk{The instabilities observed in the unsuccessful trials could be solved by loosening the constraints on the planner. The planner could allow the arm controller to have the arm pass over each intermediate waypoint without having to get to a full stop within an arbitrarily chosen delta of curvature values. The planner could take as a measure of progress a decreasing cartesian distance of the gripper to its final target pose.}
-\rkk{It is worth mentioning that the exteroceptive tracking system has the disadvantage that an occlusion of one or more markers can cause the tracking system to temporarily loose track of a measured arm segment. In that case, the control loop can not function properly until the occlusion disappears. Proprioceptive sensors within the segments can solve this issue.}
+\rkk{It is worth mentioning that the exteroceptive tracking system has the disadvantage that the full occlusion of one or more markers can cause the tracking system to temporarily loose track of a measured arm segment. In that case, the control loop can not function properly until the occlusion disappears. Proprioceptive sensors within the segments can solve this issue. A first step towards proprioceptive sensing was done for three soft fingers arranged as a hand in \cite{homberg2015haptic}.}
 
 \begin{figure*}[htbp]
 \begin{centering}
   \includegraphics[width=0.375\textwidth]{Figures/experimental_results/oneTrialVsTime.eps}
 \includegraphics[width=0.30\textwidth]{figures/experimental_results/exp5a-4_sweep_to_object.jpg}
 \includegraphics[width=0.31\textwidth]{figures/experimental_results/exp5a-4_sweep_to_bin.jpg}
-  \caption{Left: A time series representation of an experimental grasp-and-place trial for an object located at point E. Here, the locally optimal planned manipulator configurations as well as planned sequential approach circles are shown as black dotted curves. The arm and gripper are shown in their experimentally determined configuration representations at 1 second intervals. The cyan configurations represent the manipulator prior to grasping the object, that is moving from its initial configuration to the object's location. The magenta configurations represent the manipulator after grasping the object, that is moving from the object's location back to the bin location shown in red. Right: A photograph of the arm moving from its initial pose to the object and from the object to the release location, respectively. }
+  \caption{Left: A time series representation of an experimental grasp-and-place trial for an object located at point E. Here, the locally optimal planned manipulator configurations as well as planned sequential approach circles are shown as black dotted curves. The arm and gripper are shown in their experimentally determined configuration representations at 1 second intervals. The cyan configurations represent the manipulator prior to grasping the object, that is moving from its initial configuration to the object's location. The magenta configurations represent the manipulator after grasping the object, that is moving from the object's location back to the bin location shown in red. Right: A photograph of the arm moving from its initial pose to the object and from the object to the release location, respectively.}
 \label{fig:oneTrialVsTime}
 \end{centering}
 \end{figure*}
+
+\rkk{The experiments were performed for picking up objects on the left quadrant of the manipulator.
+Grasping objects on both sides of the manipulator could be achieved in various ways by 
+\begin{enumerate}
+\item replacing the large gripper at the end of the arm with two smaller grippers next to each other, 
+\item mounting roller supports on the top face of the manipulator and then rotating the manipulator at its root by $180^{\circ}$,
+\item increasing the reachable workspace through starting the soft arm at an extreme curvature configuration within the right quadrant.  
+\end{enumerate}
+}

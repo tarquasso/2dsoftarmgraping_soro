@@ -24,8 +24,9 @@ A motion tracker constantly captures the position of the object and passes it al
 \rkk{We consider the object to have settled if it has not moved by more than a small $\epsilon$ for 2\unit{s}}.
 After it has settled, the Grasp Object Planner receives the coordinates and radius of the settled object and together with the current curvature values of the arm and gripper, it solves a series of constrained nonlinear optimization problems to generate end-effector poses approaching the object.
 Those end-effector poses are essentially waypoints for an optimized path the robot arm should take to get to the final position without the risk of pushing away the object before the gripper arrives there. 
-Forcing the arm controller to follow those intermediate waypoints ensures that the arm moves to the object while its null space maintains a convex shape, bending away from the object. 
-Furthermore, it allows the arm to move in smaller portions, decreasing the risk of large overshoots due to slip-stick friction between the roller supports and the ground.
+Forcing the arm controller to follow those intermediate waypoints ensures that the arm moves to the object while its null space maintains a convex shape, \rkk{always} bending away from the object. 
+\rkk{This is a conservative approach requiring minimal computation to solve the planning problem of not prematurely colliding with the object.} 
+Furthermore, \rkk{this approach} allows the arm to move in smaller portions, decreasing the risk of large overshoots due to slip-stick friction between the roller supports and the ground.
 This planner is described in more detail in Section~\ref{subsec:grasp_planner}.
 
 \begin{figure}[!htb]
@@ -43,7 +44,7 @@ To allow for smoother transitions between each configuration $\boldsymbol{\kappa
 These profiles allow real-time interpolation between the approach configurations of the arm and avoid overshooting at the next target configuration.
 When the arm has arrived at the object, the curvature controller initiates \texttt{graspObject()}.
 After encapsulating the object, \texttt{moveToBin()} requests \texttt{trajGen()} for another trajectory from the current pose to a pre-defined bin location.
-After the manipulator has arrived at the bin location, the procedure \texttt{releaseObject()} causes the gripper to open and release the object.
+\rkk{When the manipulator gets close to the bin location}, the procedure \texttt{releaseObject()} causes the gripper to open and release the object.
 
 \subsection{Grasp Object Planner}
 \label{subsec:grasp_planner}
@@ -53,8 +54,9 @@ That is, given the location $\left(x_o, \, y_o\right)$ and radius $r_o$ of a rou
 We refer to these as approach configurations.
 The process for determining these approach configurations is detailed in the \texttt{planGrasp()} procedure within the Grasp Object Planner, see Algorithm \ref{alg:planGrasp}.
 The planner is visualized in Figure \ref{fig:planGrasp}.
-In short, we define a series of approach radii $r_{a_i} \;  \forall i\, = 1.. numMoves$ that define concentric circles shrinking from the manipulator's starting tip pose towards the center of the object.
+In short, we define a series of approach radii $r_{a_i} \;  \forall i\, = 1.. numMoves$ that define concentric \rkk{green} circles shrinking from the manipulator's starting tip pose towards the center of the object.
 Given actuator limits, we then search for a series of feasible manipulator configurations $\boldsymbol{\kappa}_i^*$ that will place the robot's end-effector on these \rkk{green} circles, parameterized by $r_a$ and $\phi$, while minimizing manipulator deformation.
+\rkk{Minimized manipulator deformation is chosen as the optimization criterion, because it is proportional to the energy consumed by the fluidic drive cylinders and it also minimizes the strain to the soft actuators.}
 
 \begin{figure}[htpb]
 \centering
@@ -131,5 +133,5 @@ Also, the number of approach configurations $numMoves$ is determined as $\lfloor
 Using these parameters, approach radii $r_a$ are iteratively calculated and their corresponding locally optimal configurations are found using the \texttt{findOptimalConfig($r_a$)} procedure. 
 This process is posed as a nonlinear optimization. 
 Here, the objective function represents the summation of independently weighted manipulator curvatures and the constraints force the manipulator's tip to lie on and to be tangent to the approach circle. 
-This process leverages the arm's forward kinematics \texttt{forwKin()} defined in \cite{marchese2014design} and reproduced in Algorithm \ref{alg:planGrasp} for convenience. 
+This process leverages the arm's forward kinematics \texttt{forwKin()} defined in \cite{marchese2014design} and reproduced in Algorithm~\ref{alg:planGrasp} for convenience. 
 
