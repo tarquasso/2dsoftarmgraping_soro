@@ -3,9 +3,9 @@
 In the following section summarizes the results from experiments with the soft manipulator. We discuss the grasping of delicate objects and cylindrical objects as well as the repeatability and success rate of the autonomous system.
  
 \subsection{Grasping Delicate Objects}
-\rkk{It was shown in \cite{marchese2015recipe} that pleated grippers of similar dimensions like the one used in this work can exert a continuous spectrum of blocking force in the range of 0-2\unit{N} at a pressure range of 0-60\unit{kPa}. Grasping delicate objects should therefore be possible with the soft manipulator.}
+\rkk{It was shown in \cite{marchese2015recipe} that pleated grippers of similar dimensions like the one used in this work can be contiuously actuated in a pressure range of 0-60\unit{kPa} and create blocking forces in the range of 0-2\unit{N}. This fine actuation range and the fact that soft manipulators easily conform to shapes implies that grasping delicate objects should be possible.}
 The manipulator in fact picks up delicate objects \rkk{such as eggs, shuttlecocks or bakery items} without \rkk{squishing} or breaking those. 
-Figure~\ref{fig:egg_approach_sequence} shows how the manipulator approaches and grasps an egg.
+Figure~\ref{fig:egg_approach_sequence} shows \rkk{for example} how the manipulator approaches and grasps an egg.
 Delicate objects can be manipulated without requiring a shape or a force sensor within its structure, since the compliant gripper body conforms to the object.
 Rigid-bodied grippers usually rely on force sensing or another type of sensory feedback to avoid damage caused to the object.
 
@@ -26,8 +26,10 @@ The markers only serve as a reference point for the user to place the object rou
 The user's placing accuracy is not important to the algorithm, \rkk{since the tracking system newly registers the position of the object every time it is placed.}
 The five points were chosen to approximately represent the major portion of the manipulator's reachable workspace.
 As long as the root of the gripper stops so that the object is located within the capture region, the gripper will pick it up through its sweeping closing motion. The capture region is shown in grey in Figure~\ref{fig:grasp_uncertainty}. 
+
 The evaluation of the capture region is performed similarly to a method described in Dogar and Srinivasa\cite{dogar2010push} work on determining capture regions for a push-grasp of a classical robotic gripper.
-\rkk{Grid paper and fine markings on all four sides of the round object ensure that the placement by the user is accurate within $\pm$1\unit{mm} in relation to the discrete placement locations on the grid. This test serves as a qualitative measure to show a relation between object size to gripper size to area of successful grasp.}
+\rkk{Grid paper and fine markings on all four sides of the round object ensure that the placement by the user is accurate within $\pm$1\unit{mm} in relation to the discrete placement locations on the grid. This test serves as a qualitative measure to show qualitatively a relation between object size to gripper size to area of successful grasp.}
+\rkk{This characterization was repeated two times, resulting always in the same capture region.}
 Despite positioning inaccuracies of the soft manipulator, the gripper can nevertheless successfully perform a grasp of an object. 
 
 When the arm reaches \rkk{its straight pose within a relatively large delta}, it drops the object.
