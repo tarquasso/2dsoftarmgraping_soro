@@ -3,7 +3,8 @@
 In the following section summarizes the results from experiments with the soft manipulator. We discuss the grasping of delicate objects and cylindrical objects as well as the repeatability and success rate of the autonomous system.
  
 \subsection{Grasping Delicate Objects}
-The soft manipulator can pick up eggs and other delicate objects without breaking them. 
+\rkk{It was shown in \cite{marchese2015recipe} that pleated grippers of similar dimensions like the one used in this work can exert a continuous spectrum of blocking force in the range of 0-2\unit{N} at a pressure range of 0-60\unit{kPa}. Grasping delicate objects should therefore be possible with the soft manipulator.}
+The manipulator in fact picks up delicate objects \rkk{such as eggs, shuttlecocks or bakery items} without \rkk{squishing} or breaking those. 
 Figure~\ref{fig:egg_approach_sequence} shows how the manipulator approaches and grasps an egg.
 Delicate objects can be manipulated without requiring a shape or a force sensor within its structure, since the compliant gripper body conforms to the object.
 Rigid-bodied grippers usually rely on force sensing or another type of sensory feedback to avoid damage caused to the object.
@@ -26,9 +27,11 @@ The user's placing accuracy is not important to the algorithm, the tracking syst
 The five points were chosen to approximately represent the major portion of the manipulator's reachable workspace.
 As long as the root of the gripper stops so that the object is located within the capture region, the gripper will pick it up through its sweeping closing motion. The capture region is shown in grey in Figure~\ref{fig:grasp_uncertainty}. 
 The evaluation of the capture region is performed similarly to a method described in Dogar and Srinivasa\cite{dogar2010push} work on determining capture regions for a push-grasp of a classical robotic gripper.
+\rkk{Grid paper and fine markings on all four sides of the round object ensure that the placement by the user is accurate within $\pm$1\unit{mm} in relation to the discrete placement locations on the grid. This test serves as a qualitative measure to show a relation between object size to gripper size to area of successful grasp.}
 Despite positioning inaccuracies of the soft manipulator, the gripper can nevertheless successfully perform a grasp of an object. 
 
-When the arm reaches the red bin location, it drops the object.
+When the arm reaches \rkk{its straight pose within a relatively large delta}, it drops the object.
+\rkk{For these experiments, we focus on showing the capability of picking up objects at various places and moving them around, there is no emphasis set on having to drop off the object at a specific pose. To indicate that the arm can move the object after grasping, the arm was controlled to go back to the fully straight pose. When it got fairly close to that final straight pose within a large allowable delta, the gripper was set to release and drop the object. It was not ensured by the planner that the arm had to first settle to zero velocity at the final straight pose. As a consequence of this, the experimental data indicates as a red bin a relatively wide drop off area.}
 
 \begin{figure*}[htbp]
 \begin{centering}
@@ -40,7 +43,7 @@ When the arm reaches the red bin location, it drops the object.
 
 The unsuccessful trials happened due to stick-slip friction between the roller bearings and the table surface.
 Our kinematic modeling does not account for this non-linear behavior, which acts as a disturbance and can lead to failure to arrive at the next waypoint.
-To be more specific, in one of the trials, the robot slowed down too much before it almost reached its next waypoint and because of friction the arm got to a full stop. 
+To be more specific, in one of the trials, the robot slowed down too much before it almost reached its next waypoint and because of friction the arm halted to a full stop. 
 The proportional gain of the curvature controller was not able to compensate for that small positional delta and since the relatively low saturation level of the integrator portion of the controller was saturated, the arm did not move to the next waypoint pose. 
 It is to note, that the saturation level for the integrator is defined by a safety limit on the maximal inflation of the robotic arm.
 In the other unsuccesful trial, the stick-slip friction also caused the arm to halt before a waypoint. The controller built up enough forcing due to inflation, so that the arm slipped over the close waypoint without having all of its single arm segment curvature within an acceptable epsilon.
@@ -56,8 +59,11 @@ As the length of the arm increases, more workspace can be reached while less pay
 Most of the payload capability is already used up by the attached gripper itself.
 A smaller gripper would allow for larger payloads to get picked up, but consequently only smaller objects can be grasped.
 The workspace of the manipulator is limited to the top and left by the maximal extension length of the arm, and to the bottom by the maximum bending curvature, which the arm can achieve without over-actuating a single segment.
+\rkk{The gripper presented can not only pick up a round object, but also more arbitrarily shaped objects of similar size, for example a star-shaped object, a tape holder, a shuttlecock or an egg.}
 Objects were only grasped within the left quadrant of the arm, because of the gripper orientation and an upright initial starting pose.
-
+\rkk{A smoothing of the complete trajectory with several intermediate waypoints was found to be necessary. The amount of intermediate waypoints is determined by the variable $\delta d$, which we found empirically to be 5\unit{cm}, around half the length of the gripper. A new waypoint is sent to the controller immediately after arriving within a small delta of the previous waypoint, the controllers for each arm segment then compensate for the new delta in curvature as quickly as possible to get to the new pose $\kappa_i^*$.}
+\rkk{The instabilities observed in the unsuccessful trials could be solved by loosening the constraints on the planner. The planner could allow the arm controller to have the arm pass over each intermediate waypoint without having to get to a full stop within an arbitrarily chosen delta of curvature values. The planner could take as a measure of progress a decreasing cartesian distance of the gripper to its final target pose.}
+\rkk{It is worth mentioning that the exteroceptive tracking system has the disadvantage that an occlusion of one or more markers can cause the tracking system to temporarily loose track of a measured arm segment. In that case, the control loop can not function properly until the occlusion disappears. Proprioceptive sensors within the segments can solve this issue.}
 
 \begin{figure*}[htbp]
 \begin{centering}
