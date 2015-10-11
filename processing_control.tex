@@ -8,6 +8,7 @@ This algorithm was experimentally validated for the soft planar arm in \cite{mar
 In order to uniquely fit a configuration representation to measured endpoint data in real-time, we use a previously developed single segment inverse kinematics algorithm \cite{marchese2014design} and refer to it in this work as \texttt{singSegInvKin()}.
 The inputs to this block are the start and endpoint measurements in $\mathbb{R}^2$: $\mathbf{E}_n \; \forall n  = 1..N$, where $N$ is the number of segments composing the arm.
 The outputs from this block are the representations of the measured manipulator configuration: $\boldsymbol{\kappa}_{\textrm{meas}}$ and $\mathbf{L}_{\textrm{meas}}$.
+\rkk{Each segment of the manipulator is described by its measured curvature $\kappa_{\textrm{meas}}$ and its segment length $L_{\textrm{meas}}$}.
 This work expands on the previously developed cascaded closed-loop curvature controller, whose input is target curvatures $\boldsymbol{\kappa}_{\textrm{target}}$ and whose output is the controlled adjustment of a fluidic drive cylinder array to resolve the error between $\boldsymbol{\kappa}_{\textrm{target}}$ and $\boldsymbol{\kappa}_{\textrm{meas}}$.
 In this work we refer to it as the \texttt{curvatureController()}.
 
@@ -19,7 +20,8 @@ Therefore, a new planner is presented in the following section.
 \label{subsec:grasp-place-planner}
 The robotic manipulation system is capable of autonomously performing grasp-and-place operations. 
 A state flow diagram describing its sensing, planning and executions states is given in Fig. \ref{fig:grasp-and-place-planner}. 
-A motion tracker constantly captures the position of the object and passes it along to a routine, which checks for the object to settle. 
+A motion tracker constantly captures the position of the object and passes it along to a routine, which checks for the object to settle.
+\rkk{We consider the object to have settled if it has not moved by more than a small $\epsilon$ for 2\unit{s}}.
 After it has settled, the Grasp Object Planner receives the coordinates and radius of the settled object and together with the current curvature values of the arm and gripper, it solves a series of constrained nonlinear optimization problems to generate end-effector poses approaching the object.
 Those end-effector poses are essentially waypoints for an optimized path the robot arm should take to get to the final position without the risk of pushing away the object before the gripper arrives there. 
 Forcing the arm controller to follow those intermediate waypoints ensures that the arm moves to the object while its null space maintains a convex shape, bending away from the object. 
@@ -46,17 +48,18 @@ After the manipulator has arrived at the bin location, the procedure \texttt{rel
 \subsection{Grasp Object Planner}
 \label{subsec:grasp_planner}
 A fundamental component of the grasp-and-place system is its ability to plan a feasible approach motion to the object.
-That is, given the location $\left(x_o, \, y_o\right)$ and radius $r_o$ of a round object as well as the manipulator's current configuration $\boldsymbol{\kappa}_{\textrm{meas}}$, we determine a series of locally optimal manipulator configurations $\boldsymbol{\kappa}_i^* \; \forall i \, = 1.. numMoves$ that will, if sequentially achieved, bring the manipulator gradually closer to the object while any part of the arm is not touching the object.
+That is, given the location $\left(x_o, \, y_o\right)$ and radius $r_o$ of a round object as well as the manipulator's current configuration $\boldsymbol{\kappa}_{\textrm{meas}}$ \rkk{and segment lengths $\mathbf{L}_{\textrm{meas}}$}, we determine a series of locally optimal manipulator configurations $\boldsymbol{\kappa}_i^* \; \forall i \, = 1.. numMoves$ that will, if sequentially achieved, bring the manipulator gradually closer to the object while any part of the arm is not touching the object.
+
 We refer to these as approach configurations.
 The process for determining these approach configurations is detailed in the \texttt{planGrasp()} procedure within the Grasp Object Planner, see Algorithm \ref{alg:planGrasp}.
 The planner is visualized in Figure \ref{fig:planGrasp}.
 In short, we define a series of approach radii $r_{a_i} \;  \forall i\, = 1.. numMoves$ that define concentric circles shrinking from the manipulator's starting tip pose towards the center of the object.
-Given actuator limits, we then search for a series of feasible manipulator configurations $\boldsymbol{\kappa}_i^*$ that will place the robot's end-effector on these circles, parameterized by $r_a$ and $\phi$, while minimizing manipulator deformation.
+Given actuator limits, we then search for a series of feasible manipulator configurations $\boldsymbol{\kappa}_i^*$ that will place the robot's end-effector on these \rkk{green} circles, parameterized by $r_a$ and $\phi$, while minimizing manipulator deformation.
 
 \begin{figure}[htpb]
 \centering
    \includegraphics[width=0.85\columnwidth, trim = 0mm 0mm 5mm 5mm, clip]{Figures/processing_control/grasp_object_planner.eps}
-   \caption{Visualzation of the Grasp Object Planner. Concentric approach circles are shown in \emph{green} and are centered about the object shown in \emph{cyan}. The locally optimal approach configurations are shown in \emph{blue} and the gripper is shown in \emph{red}. The initially measured manipulator configuration is shown in black.}
+   \caption{Visualization of the Grasp Object Planner. Concentric approach circles are shown in \emph{green} and are centered about the object shown in \emph{cyan}. The locally optimal approach configurations are shown in \emph{blue} and the gripper is shown in \emph{red}. The initially measured manipulator configuration is shown in black.}
    \label{fig:planGrasp}
 \end{figure}
 
@@ -65,7 +68,7 @@ Given actuator limits, we then search for a series of feasible manipulator confi
   \SetAlgoLined\DontPrintSemicolon
   \KwIn{
   $\boldsymbol{\kappa}_{\textrm{meas}}$, $\mathbf{L}_{\textrm{meas}}$ $\gets$ measured arm configuration \;
-  $\boldsymbol{\kappa}_{\textrm{off}}$ $\gets$ bias configuration offset at start \;
+  $\boldsymbol{\kappa}_{\textrm{off}}$ $\gets$ \rkk{measured manipulator} configuration at start \;
   $g_{\textrm{off}}$ $\gets$ gripper offset normal to end-effector\;
   $x_o$, $y_o$, $r_o$ $\gets$ object center coordinates and radius \;
   $N$ $\gets$ number of manipulator segments}
@@ -120,8 +123,10 @@ Given actuator limits, we then search for a series of feasible manipulator confi
 \end{algorithm}
 
 The procedure first determines the manipulator's current tip pose $\mathbf{w}_t$ and the Euclidean distance $d_1$ between the tip and the object's center. 
+\rkk{The arc length input to the arm's forward kinematics is the $N$-th element of the segment lengths $\mathbf{L}_{\textrm{meas}}$.}
 Next, considering the object's radius $r_o$ and the gripper normal offset $\mathbf{g}_{\textrm{off}}$, the minimal tip transit distance $d_2$ is calculated. 
-$\mathbf{g}_{\textrm{off}}$ is the component of the end effector offset $\mathbf{w}_{\textrm{off}}$, which is normal to the end effector orientation. 
+\rkk{The end effector offset $\mathbf{w}_{\textrm{off}}$ describes the distance from the root of the gripper, to an offset point close to the lower end of the gripper's palm. It is visualized in the top left corner of Fig.~\ref{fig:grasp-and-place-planner}.}
+\rkk{The length} $\mathbf{g}_{\textrm{off}}$ represents the component of the end effector offset $\mathbf{w}_{\textrm{off}}$, which is normal to the end effector orientation. 
 Also, the number of approach configurations $numMoves$ is determined as $\lfloor \frac{d_2}{\Delta d} \rfloor$, where $\Delta d$ is an allowable incremental distance. 
 Using these parameters, approach radii $r_a$ are iteratively calculated and their corresponding locally optimal configurations are found using the \texttt{findOptimalConfig($r_a$)} procedure. 
 This process is posed as a nonlinear optimization. 
