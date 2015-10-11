@@ -23,7 +23,7 @@ One representative approach, grasp, and retract move is shown in Figure~\ref{fig
 In 23 of 25 experimental trials, the manipulator successfully achieved the task of grasping an object and bringing it to a bin location shown in red.
 The object was placed five times on each of the five points marked on the board.
 The markers only serve as a reference point for the user to place the object roughly at the same point at every repetition.
-The user's placing accuracy is not important to the algorithm, the tracking system newly registers every single time the position of the placed object.
+The user's placing accuracy is not important to the algorithm, \rkk{since the tracking system newly registers the position of the object every time it is placed.}
 The five points were chosen to approximately represent the major portion of the manipulator's reachable workspace.
 As long as the root of the gripper stops so that the object is located within the capture region, the gripper will pick it up through its sweeping closing motion. The capture region is shown in grey in Figure~\ref{fig:grasp_uncertainty}. 
 The evaluation of the capture region is performed similarly to a method described in Dogar and Srinivasa\cite{dogar2010push} work on determining capture regions for a push-grasp of a classical robotic gripper.
