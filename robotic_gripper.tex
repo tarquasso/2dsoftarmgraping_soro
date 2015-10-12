@@ -3,7 +3,7 @@
 \rkk{The robotic manipulator is composed of multiple bidirectional planar arm segments and combined with a unidirectional soft gripper.}
 %We first introduce the previously developed uniform channel design, which is used for the soft body arm segments.
 %Following this, 
-We describe briefly the design, fabrication and functionality of this soft grasping manipulator. Further details on the design and fabrication can be found in \cite{marchese2015recipe}.
+We describe the design, fabrication and functionality of this soft grasping manipulator. Further details on the underlying design and fabrication recipes can be found in \cite{marchese2015recipe}.
 
 %\subsection{Uniform Channel Design of the Soft Arm}
 %Several existing body segment morphologies are serpentine channels \cite{correll2010soft, marchese2014design}, uniform lateral channels \cite{marchese2014whole}, and pleated channels \cite{polygerinos2013towards, mosadegh2014pneumatic}.
@@ -34,8 +34,15 @@ We describe briefly the design, fabrication and functionality of this soft grasp
 \begin{figure}[thpb]
 \centering
    \includegraphics[width=0.90\columnwidth]{figures/robotic_gripper/design_gripper.eps}
-   \caption{The pleated channel designs. (\textbf{A}) depicts the segment in an unactuated state and (\textbf{B}) shows the segment in an actuated and therefore bent state. The expansion of the pressurized channels are schematically represented.}
+   \caption{The pleated channel designs. (\textbf{A}) depicts the segment in an unactuated state and (\textbf{B}) shows the segment in an actuated and therefore bent state. The expansion of the pressurized channels are schematically represented. \rkk{Reproduced from \cite{marchese2015recipe}.}}
    \label{fig:design}
+\end{figure}
+
+\begin{figure}[!ht]
+\centering
+   \includegraphics[width=0.85\columnwidth]{figures/robotic_gripper/fabrication_upright.eps} %fab_pleated_process_horizontal_no_labels.eps
+      \caption{Gripper fabrication process. (\textbf{A}) Pour and cure a rubber mold \rkk{(blue)}, (\textbf{B}) pour wax core \rkk{(yellow)} with embedded supportive rod \rkk{(brown)}, (\textbf{C}) combine bottom mold \rkk{(green)}, top mold \rkk{(grey)} and wax core using pins, (\textbf{D}) pour \rkk{softer} rubber \rkk{(light green)} into assembled mold, (\textbf{E}) pour stiffer rubber \rkk{(blue)} on top of the cured gripper \rkk{(light green)} to form a constraint layer, (\textbf{F}) remove cured gripper from mold, (\textbf{G}) using an oven melt out wax core from the gripper, and (\textbf{H}) add silicone tubing and plug using silicone sealant. \rkk{Reproduced from \cite{marchese2015recipe}.}}
+      \label{fig:fabrication}
 \end{figure}
 
 \subsection{Pleated Channel Design for the Gripper}
@@ -61,13 +68,6 @@ This is why we propose the application of lost-wax casting to the fabrication of
 The actuated cavities of the soft gripper are achieved by using a wax core, pourable silicone rubber and 3D printed molds.
 The complete fabrication process for the soft gripper consists of eight steps that are depicted in Figure~\ref{fig:fabrication}.
 The tools and equipment used are listed in Table~\ref{tab:MachineTools} and are referred to by superscripts.
-
-\begin{figure}[htb]
-\centering
-   \includegraphics[width=0.98\columnwidth]{figures/robotic_gripper/fabrication_new.eps} %fab_pleated_process_horizontal_no_labels.eps
-      \caption{Gripper fabrication process. (\textbf{A}) Pour and cure a rubber mold \rkk{(blue)}, (\textbf{B}) pour wax core \rkk{(yellow)} with embedded supportive rod \rkk{(brown)}, (\textbf{C}) combine bottom mold \rkk{(green)}, top mold \rkk{(grey)} and wax core using pins, (\textbf{D}) pour \rkk{softer} rubber \rkk{(light green)} into assembled mold, (\textbf{E}) pour stiffer rubber \rkk{(blue)} on top of the cured gripper \rkk{(light green)} to form a constraint layer, (\textbf{F}) remove cured gripper from mold, (\textbf{G}) using an oven melt out wax core from the gripper, and (\textbf{H}) add silicone tubing and plug using silicone sealant. \rkk{Reproduced from \cite{marchese2015recipe}.}}
-      \label{fig:fabrication}
-\end{figure}
 
 In step (A), harder silicone rubber$^6$ is poured into a mold, which contains a 3D-printed model of the wax core.
 In preparation for step (B), the model is removed and the rubber mold is left inside the outer mold.

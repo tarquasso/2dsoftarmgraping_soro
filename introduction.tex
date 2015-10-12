@@ -85,14 +85,14 @@ The gripper presented here also uses a lost-wax molding technique, but with a di
 %There are soft legged pneumatic walkers \cite{shepherd2011multigait, tolley2014resilient}, explosive jumpers \cite{shepherd2013using}, and 
 More recently, Marchese et al. demonstrated closed-loop position control of multi-segment soft planar fluidic elastomer manipulators in free space \cite{marchese2014design} and in confined spaces \cite{marchese2014whole}. Positioning is achieved using forward and inverse kinematic models and real-time camera measurements. 
 The manipulator curvatures are controlled in real-time using a curvature-volume cascaded control law.
-The work presented in this paper builds on top of this system and expands its capabilities.
-The previous version was only suitable for contactless motions in space, that would be suitable for mere inspection.
+The work presented in this work builds on top \rkk{of the previous} system and expands its capabilities \rkk{to do actual manipulation}.
+The previous version \rkk{was only suitable for moving a soft manipulator through a constrained environment without object interaction or manipulation.
+That system is only suitable for inspection tasks}.
 The work presented here is capable of autonomous object manipulation on a plane. 
 Furthermore, this work shows that combining two different soft actuator types can leverage the strength of each and together achieve a more complicated task of manipulating objects.
 The control of the arm is improved from the previous version by using a more robust vision tracking approach. 
 Previously, there were only single markers along the arm, which worked for a limited motion range, but was prone to fail if the markers go out of sight or another object is introduced to the environment. 
-Also, many trial runs were needed to arrive at the various final positions in the maze.
-%, so the previous system was no repeatable and robust. 
+Also, previously many trials were needed to successfully arrive at a final position.
 
 \subsection{Contributions}
 This work differs from the previous work in that we \rkk{create an entirely soft and autonomously controlled \emph{grasping} manipulation system. 
@@ -103,8 +103,7 @@ We provide in this work the following contribution to soft robotics:
   \item A planning algorithm to grasp-and-place randomly positioned objects on a planar surface using a 7 DOF soft manipulator.  
   \item Repeatable successful grasping demonstrations with a physical prototype and a \rkk{qualitative} experimental characterization of the uncertainty regions that can be tolerated by the soft gripper.
   %\item End-effector control of the grasping manipulator attached to a soft arm using a motion tracking system.
-  \item \rkk{Demonstrating that soft robots allow for proper autonomous manipulation of delicate objects without requiring force sensing or accurate positioning.} 
+  \item \rkk{Demonstrating that soft robots allow for proper autonomous manipulation of various delicate objects without requiring force sensing or accurate positioning.} 
 \end{itemize}
 
 %This paper is organized as follows: In Section~\ref{sec:System_Overview} we provide an overview of the planar manipulation system. In Section~\ref{sec:soft_grasping_manipulator} the gripper morphology is described, its operating principles are discussed in relation to existing morphologies, and the lost wax fabrication process is explained. Section~\ref{sec:processing_and_control} details the planning algorithms for grasp-and-place. Section~\ref{sec:experimental_results} shows results from experimental runs and provides evaluations and experimental insights. Lastly, Section~\ref{sec:conclusion} concludes by providing a summary and discussion.
-

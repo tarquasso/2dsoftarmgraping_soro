@@ -92,12 +92,12 @@ Given actuator limits, we then search for a series of feasible manipulator confi
   \KwRet{$\boldsymbol{\kappa}_i^* \quad \forall i \, = 1.. numMoves$} \;}{}
   \setcounter{AlgoLine}{0}
   \SetKwProg{myproc}{Procedure}{}{}
-  \myproc{\findOptimalConfig{$r_a$}}{
+  \myproc{\findOptimalConfig{$r_{a_i}$}}{
   $\begin{aligned}
     & \boldsymbol{\kappa}^* \, \gets \, \underset{\phi, \, \boldsymbol{\kappa}}{\text{min}}
     & & \mathbf{R} \, \left( \boldsymbol{\kappa} \, - \, \boldsymbol{\kappa}_{\textrm{off}} \right)^2. \\
     & \text{subject to}
-    & &  \mathbf{w}_t \gets \begin{bmatrix} x_o \, + \, r \, \cos{\phi} \\ y_o \, + \, r \, \sin{\phi} \\ \phi \, + \, \frac{\pi}{2} \end{bmatrix}. \\
+    & &  \mathbf{w}_t \gets \begin{bmatrix} x_o \, + \, r_{a_i} \, \cos{\phi} \\ y_o \, + \, r_{a_i} \, \sin{\phi} \\ \phi \, + \, \frac{\pi}{2} \end{bmatrix}. \\
     & & & \mathbf{f} \gets \forwKin\left( \boldsymbol{\kappa}, \, \mathbf{L}, \, N, \, L_N \right). \\
     & & & \mathbf{w}_t - \mathbf{w}_{\textrm{off}}\left(r_o, \, \phi \right) - \mathbf{f} \, = \, \mathbf{0}. \\
     & & & \kappa_{n}^{\text{min}} \leq \kappa_n \leq \kappa_{n}^{\text{max}} \quad \forall \, n = 1 \, .. \,N. \\
@@ -130,10 +130,13 @@ The procedure \rkk{\texttt{planGrasp()} in Algorithm \ref{alg:planGrasp}} first 
 \rkk{The length} $\mathbf{g}_{\textrm{off}}$ represents the component of the end effector offset $\mathbf{w}_{\textrm{off}}$, which is normal to the end effector orientation. 
 The minimal tip transit distance $d_2$ is calculated by \rkk{considering the object's radius $r_o$ and the gripper normal offset $\mathbf{g}_{\textrm{off}}$.} 
 Also, the number of approach configurations $numMoves$ is determined as $\lfloor \frac{d_2}{\Delta d} \rfloor$, where $\Delta d$ is an allowable incremental distance. 
-Using these parameters, approach radii $r_a$ \rkk{shown by the green circles} are iteratively calculated and their corresponding locally optimal configurations are found using the \texttt{findOptimalConfig($r_a$)} procedure. 
+Using these parameters, approach radii $r_a$ \rkk{shown by the green circles} are iteratively calculated and their corresponding locally optimal configurations are found \rkk{by using the optimization equation and constraints described in procedure} \texttt{findOptimalConfig($r_{a_i}$)} \rkk{of Algorithm \ref{alg:planGrasp}}.
 
 \rkk{The procedure \texttt{findOptimalConfig($r_a$)}} is posed as a nonlinear optimization \rkk{problem}. 
-Here, the objective function represents the summation of independently weighted manipulator curvatures \rkk{$\boldsymbol{\kappa} - \boldsymbol{\kappa}_{\textrm{off}}$.} The optimization constraints \rkk{cause} the manipulator's tip to lie on and to be tangent to the approach circle. 
+Here, the objective function represents the summation of independently weighted manipulator curvatures \rkk{$\boldsymbol{\kappa} - \boldsymbol{\kappa}_{\textrm{off}}$.}
+\rkk{The weights are set by the matrix $\mathbf{R}$.}
+\rkk{The variables to optimize for are $\phi$ and $\kappa$.}
+The optimization constraints \rkk{cause} the manipulator's tip to lie on and to be tangent to the approach circle. 
 \rkk{The constraints also ensure that the manipulator segment curvatures do not exceed the single soft actuator limits.}
 \rkk{Furthermore,} this \rkk{procedure} leverages the arm's forward kinematics \texttt{forwKin()} defined in \cite{marchese2014design} and reproduced \rkk{in the last section} of Algorithm~\ref{alg:planGrasp} for convenience. 
 

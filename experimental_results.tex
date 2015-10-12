@@ -66,7 +66,12 @@ The workspace of the manipulator is limited to the top and left by the maximal e
 Objects were only grasped within the left quadrant of the arm, because of the gripper orientation and an upright initial starting pose.
 \rkk{A smoothing of the complete trajectory with several intermediate waypoints was found to be necessary. The amount of intermediate waypoints is determined by the variable $\Delta d$, which we found empirically to be 5\unit{cm}, around half the length of the gripper. A new waypoint is sent to the controller immediately after arriving within a small delta of the previous waypoint, the controllers for each arm segment then compensate for the new delta in curvature as quickly as possible to get to the new pose $\kappa_i^*$.}
 \rkk{The instabilities observed in the unsuccessful trials could be solved by loosening the constraints on the planner. The planner could allow the arm controller to have the arm pass over each intermediate waypoint without having to get to a full stop within an arbitrarily chosen delta of curvature values. The planner could take as a measure of progress a decreasing cartesian distance of the gripper to its final target pose.}
-\rkk{It is worth mentioning that the exteroceptive tracking system has the disadvantage that the full occlusion of one or more markers can cause the tracking system to temporarily loose track of a measured arm segment. In that case, the control loop can not function properly until the occlusion disappears. Proprioceptive sensors within the segments can solve this issue. A first step towards proprioceptive sensing was done for three soft fingers arranged as a hand in \cite{homberg2015haptic}.}
+\rkk{We developed an end-to-end system that can approximately locate an object placed at an a priori unknown location and move it somewhere else. The external localization system is a convenient way to approximately identify the location of the object and to track how the object is moved around.
+The exteroceptive tracking system has the disadvantage that the full occlusion of one or more markers can cause the tracking system to temporarily loose track of a measured arm segment. 
+In that case, the control loop can not function properly until the occlusion disappears. 
+The external localization system could be replaced with another method for localizing the manipulator and the object in the workspace.
+For example, proprioceptive sensors within the segments could solve this issue partially. 
+A first step towards proprioceptive sensing was done for three soft fingers arranged as a hand in \cite{homberg2015haptic}.}
 
 \begin{figure*}[htbp]
 \begin{centering}
