@@ -21,6 +21,7 @@ We performed 25 experimental grasp-and-place trials at various positions to demo
 The results of all the trials are shown in Figure~\ref{fig:allTestsOverlaid}.
 One representative approach, grasp, and retract move is shown in Figure~\ref{fig:oneTrialVsTime}.
 In 23 of 25 experimental trials, the manipulator successfully achieved the task of grasping an object and bringing it to a bin location shown in red.
+\rkk{The test object has a weight of 18\unit{g} and a diameter of 3.3\unit{cm}.}
 The object was placed five times on each of the five points marked on the board.
 The markers only serve as a reference point for the user to place the object roughly at the same point at every repetition.
 The user's placing accuracy is not important to the algorithm, \rkk{since the tracking system newly registers the position of the object every time it is placed.}
@@ -48,7 +49,7 @@ Our kinematic modeling does not account for this non-linear behavior, which acts
 To be more specific, in one of the trials, the robot slowed down too much before it almost reached its next waypoint and because of friction the arm halted to a full stop. 
 The proportional gain of the curvature controller was not able to compensate for that small positional delta and since the relatively low saturation level of the integrator portion of the controller was saturated, the arm did not move to the next waypoint pose. 
 It is to note, that the saturation level for the integrator is defined by a safety limit on the maximal inflation of the robotic arm.
-In the other unsuccesful trial, the stick-slip friction also caused the arm to halt before a waypoint. The controller built up enough forcing due to inflation, so that the arm slipped over the close waypoint without having all of its single arm segment curvature within an acceptable epsilon.
+In the other unsuccessful trial, the stick-slip friction also caused the arm to halt before a waypoint. The controller built up enough forcing due to inflation, so that the arm slipped over the close waypoint without having all of its single arm segment curvature within an acceptable epsilon.
 The controller then tried to swing back to fulfill the missed waypoint, missed it again and that finally caused the whole arm to oscillate back-and-forth and eventually push the object off the table.
 In one of the other trials, the grasp and return was successfully performed, but a small overshoot over the final bin location at the end of the return caused the arm to drop off the table, which could have been avoided if the table would have not been too small towards the right.
 This outlier is shown in Figure~\ref{fig:allTestsOverlaid}.
@@ -72,7 +73,7 @@ Objects were only grasped within the left quadrant of the arm, because of the gr
   \includegraphics[width=0.375\textwidth]{Figures/experimental_results/oneTrialVsTime.eps}
 \includegraphics[width=0.30\textwidth]{figures/experimental_results/exp5a-4_sweep_to_object.jpg}
 \includegraphics[width=0.31\textwidth]{figures/experimental_results/exp5a-4_sweep_to_bin.jpg}
-  \caption{Left: A time series representation of an experimental grasp-and-place trial for an object located at point E. Here, the locally optimal planned manipulator configurations as well as planned sequential approach circles are shown as black dotted curves. The arm and gripper are shown in their experimentally determined configuration representations at 1 second intervals. The cyan configurations represent the manipulator prior to grasping the object, that is moving from its initial configuration to the object's location. The magenta configurations represent the manipulator after grasping the object, that is moving from the object's location back to the bin location shown in red. Right: A photograph of the arm moving from its initial pose to the object and from the object to the release location, respectively.}
+  \caption{Left: A time series representation of an experimental grasp-and-place trial for an object located at point E. Here, the locally optimal planned manipulator configurations as well as planned sequential approach circles are shown as black dotted curves. The arm and gripper are shown in their experimentally determined configuration representations at 1 second intervals. The cyan configurations represent the manipulator prior to grasping the object, that is moving from its initial configuration to the object's location. \rkk{Depending on where the object is placed, the arm takes between 17-35\unit{s} to approach it.} The magenta configurations represent the manipulator after grasping the object, that is moving from the object's location back to the bin location shown in red. \rkk{This task of moving back to the bin takes between 10-20\unit{s}.} Right: A photograph of the arm moving from its initial pose to the object and from the object to the release location, respectively.}
 \label{fig:oneTrialVsTime}
 \end{centering}
 \end{figure*}

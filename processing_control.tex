@@ -124,14 +124,17 @@ Given actuator limits, we then search for a series of feasible manipulator confi
 
 \end{algorithm}
 
-The procedure first determines the manipulator's current tip pose $\mathbf{w}_t$ and the Euclidean distance $d_1$ between the tip and the object's center. 
+The procedure \rkk{\texttt{planGrasp()} in Algorithm \ref{alg:planGrasp}} first determines the manipulator's current tip pose $\mathbf{w}_t$ and the Euclidean distance $d_1$ between the tip and the object's center. 
 \rkk{The arc length input to the arm's forward kinematics is the $N$-th element of the segment lengths $\mathbf{L}_{\textrm{meas}}$.}
-Next, considering the object's radius $r_o$ and the gripper normal offset $\mathbf{g}_{\textrm{off}}$, the minimal tip transit distance $d_2$ is calculated. 
 \rkk{The end effector offset $\mathbf{w}_{\textrm{off}}$ describes the distance from the root of the gripper, to an offset point close to the lower end of the gripper's palm. It is visualized in the top left corner of Fig.~\ref{fig:grasp-and-place-planner}.}
 \rkk{The length} $\mathbf{g}_{\textrm{off}}$ represents the component of the end effector offset $\mathbf{w}_{\textrm{off}}$, which is normal to the end effector orientation. 
+The minimal tip transit distance $d_2$ is calculated by \rkk{considering the object's radius $r_o$ and the gripper normal offset $\mathbf{g}_{\textrm{off}}$.} 
 Also, the number of approach configurations $numMoves$ is determined as $\lfloor \frac{d_2}{\Delta d} \rfloor$, where $\Delta d$ is an allowable incremental distance. 
-Using these parameters, approach radii $r_a$ are iteratively calculated and their corresponding locally optimal configurations are found using the \texttt{findOptimalConfig($r_a$)} procedure. 
-This process is posed as a nonlinear optimization. 
-Here, the objective function represents the summation of independently weighted manipulator curvatures and the constraints force the manipulator's tip to lie on and to be tangent to the approach circle. 
-This process leverages the arm's forward kinematics \texttt{forwKin()} defined in \cite{marchese2014design} and reproduced in Algorithm~\ref{alg:planGrasp} for convenience. 
+Using these parameters, approach radii $r_a$ \rkk{shown by the green circles} are iteratively calculated and their corresponding locally optimal configurations are found using the \texttt{findOptimalConfig($r_a$)} procedure. 
 
+\rkk{The procedure \texttt{findOptimalConfig($r_a$)}} is posed as a nonlinear optimization \rkk{problem}. 
+Here, the objective function represents the summation of independently weighted manipulator curvatures \rkk{$\boldsymbol{\kappa} - \boldsymbol{\kappa}_{\textrm{off}}$.} The optimization constraints \rkk{cause} the manipulator's tip to lie on and to be tangent to the approach circle. 
+\rkk{The constraints also ensure that the manipulator segment curvatures do not exceed the single soft actuator limits.}
+\rkk{Furthermore,} this \rkk{procedure} leverages the arm's forward kinematics \texttt{forwKin()} defined in \cite{marchese2014design} and reproduced \rkk{in the last section} of Algorithm~\ref{alg:planGrasp} for convenience. 
+
+\rkk{The nonlinear optimization problem was implemented using Matlab’s Optimization Toolbox with the function calls \emph{fmincon}, which finds the minimum of a constrained nonlinear multivariable function. Sequential Quadratic Programming was used as the solver with a relative upper bound of $2 \times 10^{-3}$ on the magnitude of the constraint functions. The lower bound on the size of a step was given by $1 \times 10^{-6}$. The solver takes about 1\unit{s} on a regular PC to solve for all waypoints from start to finish.} 
