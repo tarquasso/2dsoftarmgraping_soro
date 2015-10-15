@@ -113,10 +113,10 @@ Finally, in step (H) a silicone tube$^5$ and a piece of silicone cord$^{8}$ get 
 \subsection{Multi-segment Arm with Gripper}
 
 The design for the arm consisting of soft cylindrical segments was described in \cite{marchese2014whole}.
-\rkk{As was shown in \ref{marchese2015recipe} through the characterization of various actuator morphologies, the concatenation of soft cylindrical segments is most suitable to build up a robotic arm that can create high blocking forces per fluid energy inserted.}
+\rkk{As was shown in \cite{marchese2015recipe} through the characterization of various actuator morphologies, the concatenation of soft cylindrical segments is most suitable to build up a robotic arm that can create high blocking forces per fluid energy inserted.}
  \rkk{The cylindrical segments of the arm are fabricated through a retractable pin fabrication technique, which does not require lost wax cores because of their simple cylindrical cavities.} 
 Each cylindrical segment can only be actuated up to a bend angle of about $60^\circ$, therefore several segments have to be combined together to allow the arm to reach a large enough workspace to perform proper manipulation tasks on a plane. 
-\rkk{Using six segments, the $\pm 60^\circ$ joint limit does not prohibit the robot to reach its own base. Calculating the forward kinematics, see \texttt{forwKin()} in Algorithm~\ref{alg:planGrasp}, for the 6 DOF arm with a segment length of 6.27\unit{cm} and an extreme curvature of $\kappa = \frac{60/180 \pi}{0.0627\unit{m}} = 16.7\frac{1}{\unit{m}}$ shows that the tip of the robot can reach its root at a full curl.}
+\rkk{Using six segments, the joint limit does not prohibit the robot to reach its own base.} %Calculating the forward kinematics, see \texttt{forwKin()} in Algorithm~\ref{alg:planGrasp}, for the 6 DOF arm with a segment length of 6.27\unit{cm} and an extreme curvature of $\kappa = \frac{60/180 \pi}{0.0627\unit{m}} = 16.7\frac{1}{\unit{m}}$ shows that the tip of the robot can reach its root at a full curl.}
 The cylindrical segment design with its hollow channel in the center has enough space to accommodate for pneumatic tubes to connect to all six cylindrical segments and additionally to the pleated gripper, which is attached to the tip. 
 The pleated gripper has to be appropriately sized, just big enough to allow for proper manipulation without exceeding the payload capacity of the soft arm.
 
