@@ -2,6 +2,22 @@
 \label{sec:experimental_results}
 In the following section summarizes the results from experiments with the soft manipulator. We discuss the grasping of delicate objects and cylindrical objects as well as the repeatability and success rate of the autonomous system.
  
+\subsection{Aggregate System}
+\label{sec:aggregate_system}
+The aggregate \dr{soft manipulation} system is shown in Figure~\ref{fig:sys_overview}.
+%The planar six segment soft rubber manipulator consists of twelve distributed elastomer actuators. This manipulator moves with minimal friction on a level plane.
+%A soft rubber gripper is fixed to the tip of the manipulator.
+As our localization system, the OptiTrack Flex 3 by Natural Point provides real-time measurements of marked points both along the inextensible back of the manipulator and on top of the object. 
+A rigid frame holds all the subsystems \rkk{as a mobile presentation platform} together providing reliable and consistent hardware experiments without the need for recalibration.
+
+\begin{figure}[htbp]
+\begin{centering}
+  \includegraphics[width=2.0in]{Figures/system_overview/sys_overview_smaller}\\
+  \caption{System Overview. The system is composed of (\textbf{A}) a motion capture system, (\textbf{B}) rigid frame, (\textbf{C}) soft six segment planar manipulator, (\textbf{D}) an object within the grasp envelope, (\textbf{E}) a soft gripper fixed to the manipulator, (\textbf{F}) a fluidic drive cylinder array to control actuation, and (\textbf{F}) computers for real-time processing and control.} \label{fig:sys_overview}
+\end{centering}
+\end{figure}
+
+
 \subsection{Grasping Delicate Objects}
 \rkk{It was shown in \cite{marchese2015recipe} that pleated grippers of similar dimensions like the one used in this work can be contiuously actuated in a pressure range of 0-60\unit{kPa} and create blocking forces in the range of 0-2\unit{N}. This fine actuation range and the fact that soft manipulators easily conform to shapes implies that grasping delicate objects should be possible.}
 The manipulator in fact picks up delicate objects \rkk{such as eggs, shuttlecocks or bakery items} without \rkk{squishing} or breaking those. 
