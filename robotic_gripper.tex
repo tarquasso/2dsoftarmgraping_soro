@@ -3,7 +3,7 @@
 \rkk{The robotic manipulator is composed of multiple bidirectional planar arm segments and combined with a unidirectional soft gripper.}
 %We first introduce the previously developed uniform channel design, which is used for the soft body arm segments.
 %Following this, 
-We briefly describe the design, fabrication and functionality of this soft grasping manipulator. Further details on the design and fabrication can be found in \cite{marchese2015recipe}.
+We briefly describe the design, fabrication and functionality of this soft grasping manipulator in this paper. Further details on the design and fabrication can be found in \cite{marchese2015recipe}.
 
 %\subsection{Uniform Channel Design of the Soft Arm}
 %Several existing body segment morphologies are serpentine channels \cite{correll2010soft, marchese2014design}, uniform lateral channels \cite{marchese2014whole}, and pleated channels \cite{polygerinos2013towards, mosadegh2014pneumatic}.
@@ -33,10 +33,11 @@ We briefly describe the design, fabrication and functionality of this soft grasp
 
 \begin{figure}[thpb]
 \centering
-   \includegraphics[width=0.99\columnwidth]{figures/robotic_gripper/design_gripper.eps}
-   \caption{The pleated channel designs. (\textbf{A}) depicts the segment in an unactuated state and (\textbf{B}) shows the segment in an actuated and therefore bent state. The expansion of the pressurized channels are schematically represented. \rkk{Reproduced from \cite{marchese2015recipe}.}}
+   \includegraphics[width=0.99\columnwidth]{figures/robotic_gripper/design_gripper_detailed.eps}
+   \caption{The pleated channel designs. The design consists of a channel inlet (a), an almost inextensible constraint layer (b), uniform pleats (d) separated by even gaps (c), and internal channels within each pleat (e). (\textbf{A}) depicts the segment in an unactuated state and (\textbf{B}) shows the segment in an actuated and therefore bent state. The expansion of the pressurized channels are schematically represented. \rkk{Reproduced from \cite{marchese2015recipe}.}}
    \label{fig:design}
 \end{figure}
+
 
 %\begin{figure}[!ht]
 %\centering
@@ -61,12 +62,14 @@ Using this approach, the \emph{cyan} portion of the pleated gripper can be cured
 %We observed that soft actuators built this way tend to rupture more easily at their weakening seams.}
 
 \subsection{Lost Wax Fabrication for Fluidic Elastomer Actuators}
-Existing soft fluidic manipulators are mostly produced through a multi-step lamination process called soft lithography, which results in weakening seams that can easily delaminate. 
+Existing soft fluidic manipulators are mostly produced through a multi-step lamination process called \emph{soft lithography}, which results in weakening seams that can easily delaminate. 
 This limits their range of applications and lifetime.
-\rkk{The retractable pin fabrication for uniform lateral channels, first introduced in \cite{marchese2014whole}, does not cause weakening seams to the actuator, but it also does not allow for cavities more complicated than cylindrical shapes.}
+\rkk{The retractable pin fabrication for uniform lateral channels, first introduced in \cite{marchese2014whole},
+limits the complexity of the cavities to cylindrical shapes but does not cause weakening seams to the actuator.}
+%does not cause weakening seams to the actuator, but it also does not allow for cavities more complicated than cylindrical shapes.}
 This is why the application of lost-wax casting to the fabrication of soft fluidic actuators like a gripper is advantageous.
-The actuated cavities of the soft gripper are achieved by using a wax core, pourable silicone rubber and 3D printed molds.
-The gripper fabrication process and the tools needed are fully described and depicted in Section~4.3. and Figure~14 of the recipes paper for soft fluidic elastomer actuators \cite{marchese2015recipe}. %Figure~\ref{fig:fabrication}.
+The actuated cavities of the soft gripper are achieved using a wax core, pourable silicone rubber and 3D printed molds.
+The gripper fabrication process and the tools needed are fully described and depicted in Section~4.3. and Figure~14 in \cite{marchese2015recipe}. %Figure~\ref{fig:fabrication}.
 %The tools and equipment used are also listed in Table~\ref{tab:MachineTools} and are referred to by superscripts.
 %
 %In step (A), harder silicone rubber$^6$ is poured into a mold, which contains a 3D-printed model of the wax core.
@@ -112,11 +115,12 @@ The gripper fabrication process and the tools needed are fully described and dep
 
 \subsection{Multi-segment Arm with Gripper}
 
-The design for the arm consisting of soft cylindrical segments was described in \cite{marchese2014whole}.
-\rkk{As was shown in \cite{marchese2015recipe} through the characterization of various actuator morphologies, the concatenation of soft cylindrical segments is most suitable to build up a robotic arm that can create high blocking forces per fluid energy inserted.}
- \rkk{The cylindrical segments of the arm are fabricated through a retractable pin fabrication technique, which does not require lost wax cores because of their simple cylindrical cavities.} 
-Each cylindrical segment can only be actuated up to a bend angle of about $60^\circ$, therefore several segments have to be combined together to allow the arm to reach a large enough workspace to perform proper manipulation tasks on a plane. 
-\rkk{Using six segments, the joint limits do not prohibit the robot to reach with its tip its own root.} %Calculating the forward kinematics, see \texttt{forwKin()} in Algorithm~\ref{alg:planGrasp}, for the 6 DOF arm with a segment length of 6.27\unit{cm} and an extreme curvature of $\kappa = \frac{60/180 \pi}{0.0627\unit{m}} = 16.7\frac{1}{\unit{m}}$ shows that the tip of the robot can reach its root at a full curl.}
+The design for the arm consisting of soft cylindrical segments is described in \cite{marchese2014whole}.
+\rkk{As is shown in \cite{marchese2015recipe} through the characterization of various actuator morphologies, the concatenation of soft cylindrical segments is most suitable to build up a robotic arm that can create high blocking forces per fluid energy inserted.}
+ \rkk{The cylindrical segments of the arm are fabricated through a retractable pin fabrication technique \cite{marchese2014whole}, which does not require lost wax cores because of their simple cylindrical cavities.} 
+Each cylindrical segment can be actuated up to a bend angle of about $60^\circ$, this requires several segments to be combined together to allow the arm to reach a large enough workspace to perform proper manipulation tasks on a plane. 
+\rkk{Using six segments, the robot is able to touch its tip to its base without interference from the individual joint limits.}
+%the joint limits do not prohibit the robot to reach with its tip its own root.} %Calculating the forward kinematics, see \texttt{forwKin()} in Algorithm~\ref{alg:planGrasp}, for the 6 DOF arm with a segment length of 6.27\unit{cm} and an extreme curvature of $\kappa = \frac{60/180 \pi}{0.0627\unit{m}} = 16.7\frac{1}{\unit{m}}$ shows that the tip of the robot can reach its root at a full curl.}
 The cylindrical segment design with its hollow channel in the center has enough space to accommodate for pneumatic tubes to connect to all six cylindrical segments and additionally to the pleated gripper, which is attached to the tip. 
 The pleated gripper has to be appropriately sized, just big enough to allow for proper manipulation without exceeding the payload capacity of the soft arm.
 

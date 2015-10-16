@@ -1,7 +1,7 @@
 \section{Introduction}
 
 %High Level Vision
-Soft robots exhibit continuum body motion, large scale deformation, high compliance and adjustable impedance  compared to traditional rigid-bodied robots with high impedance \cite{trivedi2008soft}. 
+Soft robots exhibit continuum body motion, large scale deformation, high compliance, and adjustable impedance  compared to traditional rigid-bodied robots with high impedance \cite{trivedi2008soft}. 
 % whereas humans and animals have extremities with variable impedance.
 %Soft robots won't necessarily replace existing rigid robot technologies, but complement it, because they can enable static and dynamic manipulations systems in nature are capable of.
 %A further motivating factor for this work is that soft robots are inherently safer for interaction with humans and the environment due to their structural compliance and they can be lighter, one of the reasons why we research on that path.
@@ -9,7 +9,7 @@ Soft robots exhibit continuum body motion, large scale deformation, high complia
 
 Such characteristics make this class of robots well-suited for highly dexterous tasks and interactions that require conformation to environmental uncertainty.
 
-Our goal is to develop a soft planar fluid-powered gripper and a motion planning algorithm that leverages a soft morphology to robustly grasp, drag and place objects \dr{of unknown geometry}. 
+Our goal is to develop a soft planar fluid-powered gripper and a motion planning algorithm that leverages a soft morphology to robustly grasp, drag, and place objects \dr{of unknown geometry}. 
 %By utilizing softness in the design of our robot, we gain the ability to adapt to environmental variation \cite{mcmahan2006field}, harmlessly collide with the environment \cite{marchese2014whole}, and build resilience to unexpected external loads \cite{tolley2014resilient}; 
 \rkk{In this paper we describe a planar soft robot manipulator we developed toward this goal.
 We focus on the design, fabrication, control, and planning aspects of this soft robot.}
@@ -41,7 +41,7 @@ The fluid-powered gripper at the end of the arm can grasp an object through an o
 %The gripper can conform due to his compliance to variations in object geometry, allowing it to successfully grasp.
 The design of the gripper itself is inspired by the work of Polygerinos et al.~\cite{polygerinos2013towards}
 The design is advantageous for grasping, because it exhibits high curvature, minimal radial expansion, and remains compliant during actuation. We can repeatably fabricate the gripper using a lost-wax casting process instead of the commonly used soft lithography technique.%, a multi-layer lamination process.
-Without weakening seams, the gripper is not prone to de-lamination under high deformations. 
+As a homogeneous piece without weakening seams, the gripper is not prone to de-lamination under high deformations. 
 By abandoning the need for a lamination process, arbitrary shaped internal channels can be achieved. 
 
 We attach the gripper to a multi-segment soft manipulator to enable autonomous grasp-and-place capabilities on a plane. 
@@ -63,19 +63,19 @@ We experimentally validate the system's ability to repeatably and autonomously g
 
 Several manufacturing processes for soft biomimetic robots were reviewed by Cho et al. \cite{cho2009review}. 
 The vast majority of soft elastomer robots rely on the processes of soft lithography \cite{xia1998soft} and/or shape deposition manufacturing \cite{cham2002fast}. 
-Especially noteworthy is the use of wax for fabricating jammable skin chambers, which stiffens by vacuuming\cite{steltz2009soft}. 
+Especially noteworthy is the use of wax for fabricating jammable skin chambers, which stiffens by vacuuming \cite{steltz2009soft}. 
 The gripper presented in this work also uses a lost-wax molding technique, but with a different type of actuation in mind: the obtained cavity structures are inflated to cause the gripper to bend.
 
 %\rkk{Volder et al. \cite{volder2010pneumatic} provides a detailed review of both pneumatic and hydraulic microactuators.} 
 There are several hardware examples for soft grippers described in recent literature, we will mainly focus on fluidic-based systems.
 Deimel and Brock \cite{deimel2013compliant} developed a pneumatically actuated three-fingered hand made of reinforced silicone that is mounted to a hard robot and capable of grasping.
-More recently, they have developed an anthropomorphic soft pneumatic hand capable of dexterous grasps, which is not mounted to a robot, but instead just held by a human \cite{deimel2014novel}. 
-Ilievski et al. \cite{ilievski2011soft} create through a soft-lithography fabrication a pneumatic starfish-like gripper composed of an array of silicone chambers and a PDMS membrane. 
-The gripper is hanging on a string and grasps objects like an egg or a mouse in an open-loop controlled manner. 
+More recently, they have developed an anthropomorphic soft pneumatic hand capable of dexterous grasps, which is not mounted to a robot, but instead held by a human \cite{deimel2014novel}. 
+Using a soft-lithography fabrication, Ilievski et al. \cite{ilievski2011soft} created a pneumatic starfish-like gripper composed of an array of silicone chambers and a PDMS membrane. 
+The gripper hangs on a string and grasps objects like an egg or a mouse in an open-loop controlled manner. 
 Stokes et al. \cite{Stokes2014hybrid} use a soft elastomer quadrupedal robot attached to a wheeled robot to grip and retrieve objects. 
 A puncture resistant soft pneumatic gripper is developed by Shepherd et al. in \cite{shepherd2013soft}. 
 An alternative to positive pressure actuated soft grippers is a robotic gripper that makes use of granular material jamming developed by Brown et al. and detailed in \cite{brown2010universal}.
-\rkk{Ikuta and Suzuki \cite{ikuta2002safety} showed a multiple-segment micro-hydraulic actuator for entering blood vessels.}
+\rkk{Ikuta and Suzuki \cite{ikuta2002safety} demonstrated a multiple-segment micro-hydraulic actuator for entering blood vessels.}
 The soft octopus-inspired arms developed in \cite{calisti2010study} and \cite{calisti2011octopus} are not fluidic powered, but instead use cables to pull rigid fixtures embedded within an elastomer body. 
 The arms were capable of grasping objects like pens or screws.
 A soft robotic tentacle developed in \cite{martinez2013robotic} was able to hold a flower and a horseshoe-shaped object.The closest related soft pneumatic actuator design to our current work is the fast Pneu-net designs by Mosadegh et al. \cite{mosadegh2014pneumatic} and by Polygerinos et al. \cite{polygerinos2013towards}.
@@ -83,21 +83,21 @@ These finger-like actuators deform with minimal volume change and can bend to hi
 None of the above described grippers were controlled autonomously to perform their tasks and accordingly no statement on repeatability of the autonomous execution was given. 
 
 %talk about control
-\rkk{Simulation results of an online motion planner for a planar continuum manipulators were presented by Xiao and Vatcha\cite{xiao2010realtime}.}
+\rkk{Simulation results using an online motion planner for a planar continuum manipulators were presented by Xiao and Vatcha\cite{xiao2010realtime}.}
 \rkk{This work was extended by Li and Xiao \cite{li2015general} to present a more general formulation to constrained, continuum manipulation.}
 %More generally, the literature has several examples of soft pneumatic elastomer robots. 
 %Many of these robots use open-loop controllers. 
 %There are soft fluid-powered rolling robots \cite{correll2010soft, onal2011soft, marchese2011soft}. 
 %Also, there are soft-bodied robotic fish powered by pneumatics \cite{marchese2014autonomous} and hydraulics \cite{katzschmann2014hydraulic}. 
 %There are soft legged pneumatic walkers \cite{shepherd2011multigait, tolley2014resilient}, explosive jumpers \cite{shepherd2013using}, and 
-Marchese et al. \cite{marchese2014design}  \cite{marchese2014whole} demonstrated closed-loop position control of multi-segment soft planar fluidic elastomer manipulators in free and confined space. 
-Positioning is achieved using forward and inverse kinematic models and real-time camera measurements. 
+Marchese et al. \cite{marchese2014design} demonstrated closed-loop position control of a multi-segment soft planar fluidic elastomer manipulator in free space. 
+%Positioning is achieved using forward and inverse kinematic models and real-time camera measurements. 
 %The manipulator curvatures are controlled in real-time using a curvature-volume cascaded control law.
-The previous version \rkk{was only suitable for inspection tasks by moving the manipulator through a constrained environment without object interaction or manipulation.}
+\rkk{The soft manipulator presented in \cite{marchese2014whole} is only suitable for inspection tasks by moving through a constrained environment without object interaction or manipulation.}
 %Previously, there were only single markers along the arm, which worked for a limited motion range, but was prone to fail if the markers go out of sight or another object is introduced to the environment. 
 %Also, previously many trials were needed to successfully arrive at a final position.
 
-\rkk{The work presented here builds on the previous system. We now combine two soft actuator types to leverage their strengths in a manipulation task. A new control method demonstrates the capabilities of this new soft manipulator to actually do autonomous manipulations under uncertainties.}
+\rkk{The work presented here combines two soft actuator types to leverage their strengths in a planar manipulation task. A new control method described here demonstrates the capabilities of this new soft manipulator to perform autonomous manipulations with uncertainties.}
 %The control of the arm is improved from the previous version by using a more robust vision tracking approach. 
 
 \subsection{Contributions}
