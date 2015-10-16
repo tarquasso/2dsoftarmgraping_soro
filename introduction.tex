@@ -11,6 +11,8 @@ Such characteristics make this class of robots well-suited for highly dexterous 
 
 Our goal is to develop a soft planar fluid-powered gripper and a motion planning algorithm that leverages a soft morphology to robustly grasp, drag and place objects \dr{of unknown geometry}. 
 %By utilizing softness in the design of our robot, we gain the ability to adapt to environmental variation \cite{mcmahan2006field}, harmlessly collide with the environment \cite{marchese2014whole}, and build resilience to unexpected external loads \cite{tolley2014resilient}; 
+\rkk{In this paper we describe a planar soft robot manipulator we developed toward this goal.
+We focus on the design, fabrication, control, and planning aspects of this soft robot.}
 
 \begin{figure}[htb]
 \centering
@@ -18,6 +20,7 @@ Our goal is to develop a soft planar fluid-powered gripper and a motion planning
    \caption{The soft manipulator is grasping an egg. The robot repeatably approached, grasped and moved this delicate object without breaking it.}
    \label{fig:egg_approach_sequence}
 \end{figure}
+
 
 %Challenges %Our manipulator is highly compliant and its motion is not as precise as more traditional rigid-bodied robots. 
 %The control of its configuration is not only limited by the compliance of its low-pressure actuation, but also by its inherent elasticity.
@@ -103,9 +106,10 @@ Our work differs from the previous work in that we \rkk{create an entirely soft 
 \dr{Our planning and control method successfully copes with uncertainties in the object geometries, object placement and manipulator modeling.}
 %We do not attach a novel soft gripper to a hard arm nor do we move the gripper around manually, 
 We provide in this work the following contribution to soft robotics:
-\begin{itemize}  \item A planning algorithm to grasp-and-place randomly positioned objects on a planar surface using a 7 DOF soft manipulator.  
-  \item \rkk{Proper autonomous manipulation of various objects} \dr{of unknown geometry placed randomly in the working space of a soft manipulator} \rkk{without requiring force sensing or accurate positioning.} 
-   \item Repeatable successful grasping demonstrations with a physical prototype and a \rkk{qualitative} experimental characterization of the uncertainty regions that can be tolerated by the soft gripper.
+\begin{itemize}
+  \item The design and fabrication process of a soft 2D manipulator.  \item A planning algorithm to grasp-and-place randomly positioned objects on a planar surface using a 7 DOF soft manipulator.  
+  \item \rkk{Autonomous manipulation experiments with various objects} \dr{of unknown geometry placed randomly in the working space of a soft manipulator} \rkk{without requiring force sensing or accurate positioning.} 
+   \item Data from repeatable successful grasping demonstrations with a physical prototype and a \rkk{qualitative} experimental characterization of the uncertainty regions that can be tolerated by the soft gripper.
   %\item End-effector control of the grasping manipulator attached to a soft arm using a motion tracking system.
 %\item A \rkk{controllable} soft manipulator consisting of a multi-segment arm with a gripper to enable fully compliant planar grasping.
 \end{itemize}

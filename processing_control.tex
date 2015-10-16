@@ -50,7 +50,7 @@ After encapsulating the object, \texttt{moveToBin()} requests \texttt{trajGen()}
 
 \subsection{Grasp Object Planner}
 \label{subsec:grasp_planner}
-A fundamental component of the grasp-and-place system is its ability to plan a feasible approach motion to the object.
+The grasp-and-place system plans a feasible approach motion to the object.
 That is, given the location $\left(x_o, \, y_o\right)$ and radius $r_o$ of a cylinder enclosing the object as well as the manipulator's current configuration $\boldsymbol{\kappa}_{\textrm{meas}}$ \rkk{and segment lengths $\mathbf{L}_{\textrm{meas}}$}, we determine a series of locally optimal manipulator configurations called approach configurations $\boldsymbol{\kappa}_i^* \; \forall i \, = 1.. numMoves$ that will, if sequentially achieved, bring the manipulator gradually closer to the object while any part of the arm is not touching the object.
 
 The process for determining the approach configurations is detailed in the \texttt{planGrasp()} procedure within the Grasp Object Planner, see Algorithm \ref{alg:planGrasp}.
@@ -140,7 +140,7 @@ Here, the objective function represents the summation of independently weighted 
 The optimization constraints \rkk{cause} the manipulator's tip to lie on and to be tangent to the approach circle. 
 \rkk{The constraints also ensure that the manipulator segment curvatures do not exceed the single soft actuator limits.}
 \rkk{Furthermore,} this \rkk{procedure} leverages the arm's forward kinematics \texttt{forwKin()} defined in \cite{marchese2014design} and reproduced \rkk{in the last section} of Algorithm~\ref{alg:planGrasp} for convenience. 
-\rkk{The optimization only becomes over-constrained if it has to find an arm pose outside of the arm's reachable workspace. That occurs if the object was user-placed outside the workspace. Before performing the optimization, a feasability check is performed using the arm's forward kinematics.}
+\rkk{The optimization becomes over-constrained only if it has to find an arm pose outside of the arm's reachable workspace. That occurs if the object was user-placed outside the workspace. Before performing the optimization, a feasability check is performed using the arm's forward kinematics.}
 
 
 \rkk{The nonlinear optimization problem was implemented using Matlab’s Optimization Toolbox with the function calls \emph{fmincon}, which finds the minimum of a constrained nonlinear multivariable function. Sequential Quadratic Programming was used as the solver with a relative upper bound of $2 \times 10^{-3}$ on the magnitude of the constraint functions. The lower bound on the size of a step was given by $1 \times 10^{-6}$. The solver takes about 1\unit{s} on a regular PC to solve for all waypoints from start to finish.} 

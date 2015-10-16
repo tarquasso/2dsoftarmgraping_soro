@@ -3,9 +3,8 @@
 %In the following section summarizes the results from experiments with the soft manipulator. 
 We now discuss the grasping of objects as well as the repeatability and success rate of the autonomous system.
  
-\subsection{Aggregate System}
-\label{sec:aggregate_system}
-The aggregate \dr{soft manipulation} system is shown in Figure~\ref{fig:sys_overview}.
+\subsection{Experimental Platform}
+The \dr{soft manipulation} system is shown in Figure~\ref{fig:experimental_platform}.
 %The planar six segment soft rubber manipulator consists of twelve distributed elastomer actuators. This manipulator moves with minimal friction on a level plane.
 %A soft rubber gripper is fixed to the tip of the manipulator.
 Each arm segment is 6.27\unit{cm} and the soft gripper is 10.6\unit{cm} long.
@@ -15,7 +14,7 @@ A rigid frame holds all the subsystems \rkk{as a mobile presentation platform} t
 \begin{figure}[htbp]
 \begin{centering}
   \includegraphics[width=2.0in]{Figures/system_overview/sys_overview_smaller}\\
-  \caption{System Overview. The system is composed of (\textbf{A}) a motion capture system, (\textbf{B}) rigid frame, (\textbf{C}) soft six segment planar manipulator, (\textbf{D}) an object within the grasp envelope, (\textbf{E}) a soft gripper fixed to the manipulator, (\textbf{F}) a fluidic drive cylinder array to control actuation, and (\textbf{F}) computers for real-time processing and control.} \label{fig:sys_overview}
+  \caption{System Overview. The system is composed of (\textbf{A}) a motion capture system, (\textbf{B}) rigid frame, (\textbf{C}) soft six segment planar manipulator, (\textbf{D}) an object within the grasp envelope, (\textbf{E}) a soft gripper fixed to the manipulator, (\textbf{F}) a fluidic drive cylinder array to control actuation, and (\textbf{F}) computers for real-time processing and control.} \label{fig:experimental_platform}
 \end{centering}
 \end{figure}
 
@@ -34,8 +33,13 @@ A rigid frame holds all the subsystems \rkk{as a mobile presentation platform} t
    \label{fig:grasp_uncertainty}
 \end{figure} 
 
-\subsection{Repeated Grasp Experiments}
-We performed over 200 experimental grasp-and-place trials at various positions to demonstrate the capabilities and repeatability of our system.
+\subsection{Grasp Experiments}
+\rkk{Using the experimental platform in Figure~\ref{fig:experimental_platform}, we implemented the planning algorithm described in Section~\ref{sec:processing_and_control}.
+We evaluated the manipulator system for repeatability and ability to handle uncertainty.
+The experiments consisted of picking and placing several objects of unknown geometry placed at an unknown location.
+We measured the execution time and captured the location data during the experiments.
+Specifically,}
+we performed over 200 experimental grasp-and-place trials at various positions to demonstrate the capabilities and repeatability of our system.
 We picked up various objects such as eggs, shuttlecocks, bakery items, cups, light bulbs, and tape holders. 
 The objects had an enclosing diameter in the range of 2-5\unit{cm}. 
 The results of a subset of those experimental trials are shown in Figure~\ref{fig:allTestsOverlaid}.
